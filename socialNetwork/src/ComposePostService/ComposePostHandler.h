@@ -117,7 +117,8 @@ Creator ComposePostHandler::_ComposeCreaterHelper(
   std::map<std::string, std::string> writer_text_map;
   TextMapWriter writer(writer_text_map);
   opentracing::Tracer::Global()->Inject(span->context(), writer);
-
+ 
+  LOG(info) << "*Mert*";
   auto user_client_wrapper = _user_service_client_pool->Pop();
   if (!user_client_wrapper) {
     ServiceException se;
