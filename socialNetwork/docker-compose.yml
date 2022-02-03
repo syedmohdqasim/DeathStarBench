@@ -2,7 +2,7 @@ version: "3.9"
 services:
   social-graph-service:
     image: mert/social-network-microservices:latest
-    hostname: social-graph-service
+    # hostname: social-graph-service
     #    ports:
     #      - 10000:9090
     depends_on:
@@ -17,28 +17,28 @@ services:
 
   social-graph-mongodb:
     image: mongo
-    hostname: social-graph-mongodb
+    # hostname: social-graph-mongodb
     # ports:
     #   - 27018:27017
     restart: always
 
   social-graph-redis:
     image: redis
-    hostname: social-graph-redis
+    # hostname: social-graph-redis
     # ports:
     #   - 6380:6379
     restart: always
 
   home-timeline-redis:
     image: redis
-    hostname: home-timeline-redis
+    # hostname: home-timeline-redis
     # ports:
     #   - 6381:6379
     restart: always
 
   compose-post-service:
     image: mert/social-network-microservices:latest
-    hostname: compose-post-service
+    # hostname: compose-post-service
     #    ports:
     #      - 10001:9090
     restart: always
@@ -51,7 +51,7 @@ services:
 
   post-storage-service:
     image: mert/social-network-microservices:latest
-    hostname: post-storage-service
+    # hostname: post-storage-service
     ports:
       - 10002:9090
     restart: always
@@ -66,21 +66,21 @@ services:
 
   post-storage-memcached:
     image: memcached
-    hostname: post-storage-memcached
+    # hostname: post-storage-memcached
     #    ports:
     #      - 11212:11211
     restart: always
 
   post-storage-mongodb:
     image: mongo
-    hostname: post-storage-mongodb
+    # hostname: post-storage-mongodb
     #    ports:
     #      - 27019:27017
     restart: always
 
   user-timeline-service:
     image: mert/social-network-microservices:latest
-    hostname: user-timeline-service
+    # hostname: user-timeline-service
     #    ports:
     #      - 10003:9090
     restart: always
@@ -95,21 +95,21 @@ services:
 
   user-timeline-redis:
     image: redis
-    hostname: user-timeline-redis
+    # hostname: user-timeline-redis
     #    ports:
     #      - 6383:6379
     restart: always
 
   user-timeline-mongodb:
     image: mongo
-    hostname: user-timeline-mongodb
+    # hostname: user-timeline-mongodb
     #    ports:
     #      - 27020:27017
     restart: always
 
   url-shorten-service:
     image: mert/social-network-microservices:latest
-    hostname: url-shorten-service
+    # hostname: url-shorten-service
     #    ports:
     #      - 10004:9090
     restart: always
@@ -124,21 +124,21 @@ services:
 
   url-shorten-memcached:
     image: memcached
-    hostname: url-shorten-memcached
+    # hostname: url-shorten-memcached
     #    ports:
     #      - 11213:11211
     restart: always
 
   url-shorten-mongodb:
     image: mongo
-    hostname: url-shorten-mongodb
+    # hostname: url-shorten-mongodb
     #    ports:
     #      - 27021:27017
     restart: always
 
   user-service:
     image: mert/social-network-microservices:latest
-    hostname: user-service
+    # hostname: user-service
     #    ports:
     #      - 10005:9090
     restart: always
@@ -153,21 +153,21 @@ services:
 
   user-memcached:
     image: memcached
-    hostname: user-memcached
+    # hostname: user-memcached
     #    ports:
     #      - 11214:11211
     restart: always
 
   user-mongodb:
     image: mongo
-    hostname: user-mongodb
+    # hostname: user-mongodb
     # ports:
     #   - 27023:27017
     restart: always
 
   media-service:
     image: mert/social-network-microservices:latest
-    hostname: media-service
+    # hostname: media-service
     #    ports:
     #      - 10006:9090
     depends_on:
@@ -182,21 +182,21 @@ services:
 
   media-memcached:
     image: memcached
-    hostname: media-memcached
+    # hostname: media-memcached
     #    ports:
     #      - 11215:11211
     restart: always
 
   media-mongodb:
     image: mongo
-    hostname: media-mongodb
+    # hostname: media-mongodb
     #    ports:
     #      - 27024:27017
     restart: always
 
   text-service:
     image: mert/social-network-microservices:latest
-    hostname: text-service
+    # hostname: text-service
     #    ports:
     #      - 10007:9090
     restart: always
@@ -209,7 +209,7 @@ services:
 
   unique-id-service:
     image: mert/social-network-microservices:latest
-    hostname: unique-id-service
+    # hostname: unique-id-service
     #    ports:
     #      - 10008:9090
     restart: always
@@ -222,7 +222,7 @@ services:
 
   user-mention-service:
     image: mert/social-network-microservices:latest
-    hostname: user-mention-service
+    # hostname: user-mention-service
     #    ports:
     #      - 10009:9090
     depends_on:
@@ -235,7 +235,7 @@ services:
 
   home-timeline-service:
     image: mert/social-network-microservices:latest
-    hostname: home-timeline-service
+    # hostname: home-timeline-service
     #    ports:
     #      - 10010:9090
     depends_on:
@@ -248,7 +248,7 @@ services:
 
   nginx-thrift:
     image: yg397/openresty-thrift:xenial
-    hostname: nginx-thrift
+    # hostname: nginx-thrift
     ports:
       - 8080:8080
     depends_on:
@@ -265,7 +265,7 @@ services:
 
   media-frontend:
     image: yg397/media-frontend:xenial
-    hostname: media-frontend
+    # hostname: media-frontend
     ports:
       - 8081:8080
     restart: always
