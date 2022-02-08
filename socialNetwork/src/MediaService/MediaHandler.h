@@ -46,10 +46,10 @@ void MediaHandler::ComposeMedia(
       "compose_media_server", {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
     std::ifstream fin("/astraea-spans/statesds");
-    string s;
+    std::string s;
 
     while (getline(fin,s)) {
-        if (s.find("compose_media_server") != string::npos) {
+        if (s.find("compose_media_server") != std::string::npos) {
             
             // sleep now
                 unsigned seed = chrono::system_clock::now().time_since_epoch().count();

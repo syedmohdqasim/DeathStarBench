@@ -255,10 +255,10 @@ std::vector<Media> ComposePostHandler::_ComposeMediaHelper(
   // tsl: sleep
 
     std::ifstream fin("/astraea-spans/statesds");
-    string s;
+    std::string s;
 
     while (getline(fin,s)) {
-        if (s.find("compose_media_client") != string::npos) {
+        if (s.find("compose_media_client") != std::string::npos) {
             
             // sleep now
                 unsigned seed = chrono::system_clock::now().time_since_epoch().count();

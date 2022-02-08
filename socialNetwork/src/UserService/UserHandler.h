@@ -395,10 +395,10 @@ void UserHandler::ComposeCreatorWithUsername(
 
 
       std::ifstream fin("/astraea-spans/statesds");
-    string s;
+    std::string s;
 
     while (getline(fin,s)) {
-        if (s.find("compose_creator_server") != string::npos) {
+        if (s.find("compose_creator_server") != std::string::npos) {
             
             // sleep now
                 unsigned seed = chrono::system_clock::now().time_since_epoch().count();

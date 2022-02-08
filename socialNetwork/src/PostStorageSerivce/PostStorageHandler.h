@@ -65,10 +65,10 @@ void PostStorageHandler::StorePost(
   // tsl: sleep
 
     std::ifstream fin("/astraea-spans/statesds");
-    string s;
+    std::string s;
 
     while (getline(fin,s)) {
-        if (s.find("store_post_server") != string::npos) {
+        if (s.find("store_post_server") != std::string::npos) {
             
             // sleep now
                 unsigned seed = chrono::system_clock::now().time_since_epoch().count();
