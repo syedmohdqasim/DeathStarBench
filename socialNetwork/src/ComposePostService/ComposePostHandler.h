@@ -132,14 +132,14 @@ Creator ComposePostHandler::_ComposeCreaterHelper(
 
 // tsl: sleep
 
-    ifstream fin("/astraea-spans/statesds");
-    string s;
+    std::ifstream fin("/astraea-spans/statesds");
+    std::string s;
 
     while (getline(fin,s)) {
-        if (s.find("compose_creator_client") != string::npos) {
+        if (s.find("compose_creator_client") != std::string::npos) {
             
             // sleep now
-                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
               std::default_random_engine generator(seed);
               
               std::normal_distribution<> d{100,30};
