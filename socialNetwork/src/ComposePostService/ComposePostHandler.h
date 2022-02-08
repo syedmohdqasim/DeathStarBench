@@ -7,6 +7,10 @@
 #include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
 
 #include "../../gen-cpp/ComposePostService.h"
 #include "../../gen-cpp/HomeTimelineService.h"
@@ -114,6 +118,19 @@ Creator ComposePostHandler::_ComposeCreaterHelper(
   auto parent_span = opentracing::Tracer::Global()->Extract(reader);
   auto span = opentracing::Tracer::Global()->StartSpan(
       "compose_creator_client", {opentracing::ChildOf(parent_span->get())});
+
+// tsl: sleep
+
+  std::default_random_engine generator;
+
+  std::normal_distribution<> d{10,5};
+  int x = std::round(d(generator));
+  // cout<<x;
+  LOG(info) << "*Mert sleep*";
+  LOG(info) << x;
+
+  std::this_thread::sleep_for(std::chrono::milliseconds(x));
+
   std::map<std::string, std::string> writer_text_map;
   TextMapWriter writer(writer_text_map);
   opentracing::Tracer::Global()->Inject(span->context(), writer);
