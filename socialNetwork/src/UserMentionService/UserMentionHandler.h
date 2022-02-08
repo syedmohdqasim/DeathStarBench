@@ -5,6 +5,13 @@
 #include <libmemcached/memcached.h>
 #include <libmemcached/util.h>
 #include <mongoc.h>
+#include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
 
 #include "../../gen-cpp/UserMentionService.h"
 #include "../../gen-cpp/social_network_types.h"
@@ -204,6 +211,25 @@ void UserMentionHandler::ComposeUserMentions(
       auto find_span = opentracing::Tracer::Global()->StartSpan(
           "compose_user_mentions_mongo_find_client",
           {opentracing::ChildOf(&span->context())});
+
+        std::ifstream fin("/astraea-spans/statesds");
+    std::string s;
+
+    while (getline(fin,s)) {
+        if (s.find("compose_user_mentions_mongo_find_client") != std::string::npos) {
+            
+            // sleep now
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert compose_user_mentions_mongo_find_client sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
       mongoc_cursor_t *cursor =
           mongoc_collection_find_with_opts(collection, query, nullptr, nullptr);
       const bson_t *doc;

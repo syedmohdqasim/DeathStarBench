@@ -7,6 +7,12 @@
 #include <mutex>
 #include <sstream>
 #include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
 
 #include "../../gen-cpp/UniqueIdService.h"
 #include "../../gen-cpp/social_network_types.h"

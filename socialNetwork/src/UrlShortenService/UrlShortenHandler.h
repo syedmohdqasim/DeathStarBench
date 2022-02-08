@@ -4,6 +4,13 @@
 #include <random>
 #include <chrono>
 #include <future>
+#include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
 
 #include <mongoc.h>
 #include <libmemcached/memcached.h>

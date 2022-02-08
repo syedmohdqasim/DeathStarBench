@@ -8,6 +8,12 @@
 #include <future>
 #include <iostream>
 #include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
 
 #include "../../gen-cpp/PostStorageService.h"
 #include "../../gen-cpp/UserTimelineService.h"
@@ -157,6 +163,26 @@ void UserTimelineHandler::WriteUserTimeline(
   auto redis_span = opentracing::Tracer::Global()->StartSpan(
       "write_user_timeline_redis_update_client",
       {opentracing::ChildOf(&span->context())});
+
+ std::ifstream fin("/astraea-spans/statesds");
+    std::string s;
+
+    while (getline(fin,s)) {
+        if (s.find("write_user_timeline_redis_update_client") != std::string::npos) {
+            
+            // sleep now
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert write_user_timeline_redis_update_client sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
+
   try {
     if (_redis_client_pool)
       _redis_client_pool->zadd(std::to_string(user_id), std::to_string(post_id),
