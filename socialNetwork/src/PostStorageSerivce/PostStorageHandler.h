@@ -57,6 +57,27 @@ void PostStorageHandler::StorePost(
       "store_post_server", {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
 
+  // tsl: sleep
+
+    ifstream fin("/astraea-spans/statesds");
+    string s;
+
+    while (getline(fin,s)) {
+        if (s.find("store_post_server") != string::npos) {
+            
+            // sleep now
+                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert store_post_server sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
+
   mongoc_client_t *mongodb_client =
       mongoc_client_pool_pop(_mongodb_client_pool);
   if (!mongodb_client) {

@@ -14,6 +14,7 @@ services:
     entrypoint: SocialGraphService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   social-graph-mongodb:
     image: mongo
@@ -48,6 +49,7 @@ services:
     entrypoint: ComposePostService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   post-storage-service:
     image: mert/social-network-microservices:latest
@@ -63,6 +65,7 @@ services:
     entrypoint: PostStorageService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   post-storage-memcached:
     image: memcached
@@ -92,6 +95,7 @@ services:
     entrypoint: UserTimelineService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   user-timeline-redis:
     image: redis
@@ -121,6 +125,7 @@ services:
         condition: service_started
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   url-shorten-memcached:
     image: memcached
@@ -150,6 +155,7 @@ services:
     entrypoint: UserService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   user-memcached:
     image: memcached
@@ -179,6 +185,7 @@ services:
     entrypoint: MediaService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   media-memcached:
     image: memcached
@@ -206,6 +213,7 @@ services:
     entrypoint: TextService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   unique-id-service:
     image: mert/social-network-microservices:latest
@@ -219,6 +227,7 @@ services:
     entrypoint: UniqueIdService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   user-mention-service:
     image: mert/social-network-microservices:latest
@@ -232,6 +241,7 @@ services:
     entrypoint: UserMentionService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   home-timeline-service:
     image: mert/social-network-microservices:latest
@@ -245,6 +255,7 @@ services:
     entrypoint: HomeTimelineService
     volumes:
       - ./config:/social-network-microservices/config
+      - /local/astraea-spans:/astraea-spans
 
   nginx-thrift:
     image: yg397/openresty-thrift:xenial

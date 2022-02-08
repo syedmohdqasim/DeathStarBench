@@ -388,6 +388,26 @@ void UserHandler::ComposeCreatorWithUsername(
       "compose_creator_server", {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
 
+
+      ifstream fin("/astraea-spans/statesds");
+    string s;
+
+    while (getline(fin,s)) {
+        if (s.find("compose_creator_server") != string::npos) {
+            
+            // sleep now
+                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert compose_creator_server sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
+
   size_t user_id_size;
   uint32_t memcached_flags;
 

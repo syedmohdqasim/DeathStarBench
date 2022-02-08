@@ -11,6 +11,8 @@
 #include <thread>
 #include <random>
 #include <cmath>
+#include <fstream>
+#include <ifstream>
 
 #include "../../gen-cpp/ComposePostService.h"
 #include "../../gen-cpp/HomeTimelineService.h"
@@ -119,23 +121,35 @@ Creator ComposePostHandler::_ComposeCreaterHelper(
   auto span = opentracing::Tracer::Global()->StartSpan(
       "compose_creator_client", {opentracing::ChildOf(parent_span->get())});
 
-// tsl: sleep
 
-  std::default_random_engine generator;
 
-  std::normal_distribution<> d{10,5};
-  int x = std::round(d(generator));
-  // cout<<x;
-  LOG(info) << "*Mert sleep*";
-  LOG(info) << x;
-
-  std::this_thread::sleep_for(std::chrono::milliseconds(x));
 
   std::map<std::string, std::string> writer_text_map;
   TextMapWriter writer(writer_text_map);
   opentracing::Tracer::Global()->Inject(span->context(), writer);
  
   LOG(info) << "*Mert*";
+
+// tsl: sleep
+
+    ifstream fin("/astraea-spans/statesds");
+    string s;
+
+    while (getline(fin,s)) {
+        if (s.find("compose_creator_client") != string::npos) {
+            
+            // sleep now
+                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert compose_creator_client sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
   auto user_client_wrapper = _user_service_client_pool->Pop();
   if (!user_client_wrapper) {
     ServiceException se;
@@ -169,6 +183,10 @@ TextServiceReturn ComposePostHandler::_ComposeTextHelper(
   auto parent_span = opentracing::Tracer::Global()->Extract(reader);
   auto span = opentracing::Tracer::Global()->StartSpan(
       "compose_text_client", {opentracing::ChildOf(parent_span->get())});
+
+
+
+
   std::map<std::string, std::string> writer_text_map;
   TextMapWriter writer(writer_text_map);
   opentracing::Tracer::Global()->Inject(span->context(), writer);
@@ -183,7 +201,26 @@ TextServiceReturn ComposePostHandler::_ComposeTextHelper(
     span->Finish();
     throw se;
   }
+// tsl: sleep
 
+    ifstream fin("/astraea-spans/statesds");
+    string s;
+
+    while (getline(fin,s)) {
+        if (s.find("compose_text_client") != string::npos) {
+            
+            // sleep now
+                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert compose_text_client sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
   auto text_client = text_client_wrapper->GetClient();
   TextServiceReturn _return_text;
   try {
@@ -207,9 +244,34 @@ std::vector<Media> ComposePostHandler::_ComposeMediaHelper(
   auto parent_span = opentracing::Tracer::Global()->Extract(reader);
   auto span = opentracing::Tracer::Global()->StartSpan(
       "compose_media_client", {opentracing::ChildOf(parent_span->get())});
+
+
+
   std::map<std::string, std::string> writer_text_map;
   TextMapWriter writer(writer_text_map);
   opentracing::Tracer::Global()->Inject(span->context(), writer);
+
+
+  // tsl: sleep
+
+    ifstream fin("/astraea-spans/statesds");
+    string s;
+
+    while (getline(fin,s)) {
+        if (s.find("compose_media_client") != string::npos) {
+            
+            // sleep now
+                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert compose_media_clientsleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
 
   auto media_client_wrapper = _media_service_client_pool->Pop();
   if (!media_client_wrapper) {
