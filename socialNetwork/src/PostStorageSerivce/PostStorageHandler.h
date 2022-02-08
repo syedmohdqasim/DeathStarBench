@@ -10,6 +10,12 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
+#include <ifstream>
 
 #include "../../gen-cpp/PostStorageService.h"
 #include "../logger.h"

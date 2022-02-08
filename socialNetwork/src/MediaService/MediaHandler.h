@@ -4,6 +4,12 @@
 #include <chrono>
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
+#include <ifstream>
 
 #include "../../gen-cpp/MediaService.h"
 #include "../logger.h"

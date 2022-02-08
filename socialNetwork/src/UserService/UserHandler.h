@@ -12,6 +12,12 @@
 #include <nlohmann/json.hpp>
 #include <random>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
+#include <fstream>
+#include <ifstream>
 
 #include "../../gen-cpp/SocialGraphService.h"
 #include "../../gen-cpp/UserService.h"
