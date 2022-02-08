@@ -64,7 +64,7 @@ void PostStorageHandler::StorePost(
 
   // tsl: sleep
 
-    ifstream fin("/astraea-spans/statesds");
+    std::ifstream fin("/astraea-spans/statesds");
     string s;
 
     while (getline(fin,s)) {

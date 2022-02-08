@@ -45,7 +45,7 @@ void MediaHandler::ComposeMedia(
   auto span = opentracing::Tracer::Global()->StartSpan(
       "compose_media_server", {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
-    ifstream fin("/astraea-spans/statesds");
+    std::ifstream fin("/astraea-spans/statesds");
     string s;
 
     while (getline(fin,s)) {

@@ -394,7 +394,7 @@ void UserHandler::ComposeCreatorWithUsername(
   opentracing::Tracer::Global()->Inject(span->context(), writer);
 
 
-      ifstream fin("/astraea-spans/statesds");
+      std::ifstream fin("/astraea-spans/statesds");
     string s;
 
     while (getline(fin,s)) {
