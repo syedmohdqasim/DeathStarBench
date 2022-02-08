@@ -397,7 +397,9 @@ void UserHandler::ComposeCreatorWithUsername(
       std::ifstream fin("/astraea-spans/statesds");
     std::string s;
 
+    LOG(info) << "*Mert";
     while (getline(fin,s)) {
+        LOG(info) << s;
         if (s.find("compose_creator_server") != std::string::npos) {
             
             // sleep now
