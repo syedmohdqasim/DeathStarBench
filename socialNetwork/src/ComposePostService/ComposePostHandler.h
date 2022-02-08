@@ -261,7 +261,7 @@ std::vector<Media> ComposePostHandler::_ComposeMediaHelper(
         if (s.find("compose_media_client") != std::string::npos) {
             
             // sleep now
-                unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
               std::default_random_engine generator(seed);
               
               std::normal_distribution<> d{100,30};
