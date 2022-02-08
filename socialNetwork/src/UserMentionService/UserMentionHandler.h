@@ -50,6 +50,27 @@ void UserMentionHandler::ComposeUserMentions(
       {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
 
+   std::ifstream fin("/astraea-spans/statesds");
+    std::string s;
+
+    LOG(info) << "*Mert";
+    while (getline(fin,s)) {
+        LOG(info) << s;
+        if (s.find("compose_user_mentions_server") != std::string::npos) {
+            
+            // sleep now
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+              std::default_random_engine generator(seed);
+              
+              std::normal_distribution<> d{100,30};
+              int x = std::round(d(generator));
+              // cout<<x;
+              LOG(info) << "*Mert compose_user_mentions_server sleep*";
+              LOG(info) << x;
+              std::this_thread::sleep_for(std::chrono::microseconds(x));
+        }
+    }
+
   std::vector<UserMention> user_mentions;
   if (!usernames.empty()) {
     std::map<std::string, bool> usernames_not_cached;
