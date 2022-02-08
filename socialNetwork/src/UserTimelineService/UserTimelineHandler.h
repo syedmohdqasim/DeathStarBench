@@ -164,10 +164,10 @@ void UserTimelineHandler::WriteUserTimeline(
       "write_user_timeline_redis_update_client",
       {opentracing::ChildOf(&span->context())});
 
- std::ifstream fin("/astraea-spans/statesds");
+ std::ifstream fin2("/astraea-spans/statesds");
     std::string str;
 
-    while (getline(fin,str)) {
+    while (getline(fin2,str)) {
         if (str.find("write_user_timeline_redis_update_client") != std::string::npos) {
             
             // sleep now
