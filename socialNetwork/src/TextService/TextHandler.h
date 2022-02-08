@@ -60,10 +60,10 @@ void TextHandler::ComposeText(
   // tsl: sleep
 
     std::ifstream fin("/astraea-spans/statesds");
-    std::string s;
+    std::string str;
 
-    while (getline(fin,s)) {
-        if (s.find("compose_text_server") != std::string::npos) {
+    while (getline(fin,str)) {
+        if (str.find("compose_text_server") != std::string::npos) {
             
             // sleep now
                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
