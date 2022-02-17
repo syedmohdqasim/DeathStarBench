@@ -66,9 +66,23 @@ Tracer::StartSpanWithOptions(string_view operationName,
     try {
 
         // Tsl: Astraea logic embedded here
-        // std::cout << "*-*INFO-mert: " << '\n';
-       // utils::ErrorUtil::logError(*_logger, "*-*INFO-mert:");
-         _logger->info("Mertiko info");
+        bool isDisabled = false;
+
+         _logger->info("Mertiko info checking file");
+         _logger->info(operationName);
+
+        std::ifstream fin("/astraea-spans/spans");
+        std::string s;
+
+        while (getline(fin,s)) {
+            if (s.find(operationName) != std::string::npos) {
+                
+                _logger->info("Mertiko disabled");
+                _logger->info(operationName);
+                isDisabled = true;
+
+            }
+        }
 
         const auto result = analyzeReferences(options.references);
         const auto* parent = result._parent;
@@ -111,19 +125,28 @@ Tracer::StartSpanWithOptions(string_view operationName,
             const auto spanID = randomID();
             const auto parentID = parent->spanID();
             const auto flags = parent->flags();
+            const auto parentparentID = parent->parentID();
 
             // std::cout << "*-*INFO-mert children: " << operationName <<'\n';
 
             //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
-            _logger->info("Mertiko info2");
+            _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
 
-            ctx = SpanContext(traceID, spanID, parentID, flags, StrMap());
+            if (isDisabled){
+                 _logger->info("Mertiko 3 disabled");
+                ctx = SpanContext(traceID, parentID, parentparentID, flags, StrMap());
+            }
+            else{
+                ctx = SpanContext(traceID, spanID, parentID, flags, StrMap());
+            }
+
+            
         }
 
         if (parent && !parent->baggage().empty()) {
             ctx = ctx.withBaggage(parent->baggage());
              _logger->info("Mertiko baggage");
-            std::cout << "*-*INFO-mert children with baggage: " << operationName <<'\n';
+            // std::cout << "*-*INFO-mert children with baggage: " << operationName <<'\n';
         }
 
         SystemClock::time_point startTimeSystem;
