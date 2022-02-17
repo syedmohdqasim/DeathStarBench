@@ -126,7 +126,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
             const auto traceID = parent->traceID();
             const auto spanID = randomID();
             const auto parentID = parent->spanID();
-            const auto flags = parent->flags();
+	    //const auto flags = parent->flags();
             const auto parentparentID = parent->parentID();
 
             // std::cout << "*-*INFO-mert children: " << operationName <<'\n';
@@ -139,7 +139,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
                 ctx = SpanContext(traceID, parentID, parentparentID, 0, StrMap());
             }
             else{
-                ctx = SpanContext(traceID, spanID, parentID, flags, StrMap());
+                ctx = SpanContext(traceID, spanID, parentID, 1, StrMap());
             }
 
             
