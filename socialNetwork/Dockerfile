@@ -1,4 +1,4 @@
-FROM yg397/thrift-microservice-deps:xenial AS builder
+FROM mert/thrift-microservice-deps:xenial AS builder
 
 COPY ./ /social-network-microservices
 RUN cd /social-network-microservices \

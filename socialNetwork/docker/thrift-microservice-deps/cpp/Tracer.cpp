@@ -67,8 +67,8 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         // Tsl: Astraea logic embedded here
         // std::cout << "*-*INFO-mert: " << '\n';
-        utils::ErrorUtil::logError(*_logger, "*-*INFO-mert:");
-         _logger->error("Mertiko info");
+       // utils::ErrorUtil::logError(*_logger, "*-*INFO-mert:");
+         _logger->info("Mertiko info");
 
         const auto result = analyzeReferences(options.references);
         const auto* parent = result._parent;
@@ -114,15 +114,15 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             // std::cout << "*-*INFO-mert children: " << operationName <<'\n';
 
-            utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
-            _logger->error("Mertiko info2");
+            //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
+            _logger->info("Mertiko info2");
 
             ctx = SpanContext(traceID, spanID, parentID, flags, StrMap());
         }
 
         if (parent && !parent->baggage().empty()) {
             ctx = ctx.withBaggage(parent->baggage());
-             _logger->error("Mertiko baggage");
+             _logger->info("Mertiko baggage");
             std::cout << "*-*INFO-mert children with baggage: " << operationName <<'\n';
         }
 
