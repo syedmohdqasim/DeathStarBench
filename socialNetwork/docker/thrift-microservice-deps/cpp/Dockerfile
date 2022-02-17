@@ -15,6 +15,8 @@ ARG LIB_REDIS_PLUS_PLUS_VERSION=1.2.3
 
 ARG BUILD_DEPS="ca-certificates g++ cmake wget git libmemcached-dev automake bison flex libboost-all-dev libevent-dev libssl-dev libtool make pkg-config librabbitmq-dev python3-dev python3-pip python3-setuptools python3-wheel"
 
+ADD /local/astraea-scripts/deathstar/tracing/Tracer.cpp /tmp
+
 RUN apt-get update \
   && apt-get install -y ${BUILD_DEPS} --no-install-recommends \
   # Install mongo-c-driver
@@ -72,7 +74,7 @@ RUN apt-get update \
   && wget -O jaeger-client-cpp-${LIB_JAEGER_VERSION}.tar.gz https://github.com/jaegertracing/jaeger-client-cpp/archive/v${LIB_JAEGER_VERSION}.tar.gz \
   && tar -zxf jaeger-client-cpp-${LIB_JAEGER_VERSION}.tar.gz \
   && cd jaeger-client-cpp-${LIB_JAEGER_VERSION} \
-  && mv /local/astraea-scripts/deathstar/tracing/Tracer.cpp src/jaegertracing/ \
+  && mv /tmp/Tracer.cpp src/jaegertracing/ \
   && echo "-----Copied Tracer" >> /local/mertlogs \
   && mkdir -p cmake-build \
   && cd cmake-build \
