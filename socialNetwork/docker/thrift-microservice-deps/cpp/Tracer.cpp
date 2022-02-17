@@ -25,6 +25,7 @@
 #include <opentracing/util.h>
 #include <tuple>
 #include <fstream>
+#include <string>
 
 namespace jaegertracing {
 namespace {
