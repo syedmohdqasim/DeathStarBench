@@ -136,7 +136,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
             _logger->info("Mertiko info2222");
             if (isDisabled){
                  _logger->info("Mertiko 3 disabled");
-                ctx = SpanContext(traceID, parentID, parentparentID, flags, StrMap());
+                ctx = SpanContext(traceID, parentID, parentparentID, 0, StrMap());
             }
             else{
                 ctx = SpanContext(traceID, spanID, parentID, flags, StrMap());
