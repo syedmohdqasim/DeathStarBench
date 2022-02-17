@@ -132,8 +132,8 @@ Tracer::StartSpanWithOptions(string_view operationName,
             // std::cout << "*-*INFO-mert children: " << operationName <<'\n';
 
             //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
-            _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
-
+            // _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
+            _logger->info("Mertiko info2222");
             if (isDisabled){
                  _logger->info("Mertiko 3 disabled");
                 ctx = SpanContext(traceID, parentID, parentparentID, flags, StrMap());
