@@ -90,30 +90,25 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             }
         }
-        LOG(info) << "*Mert sleep check*";
-
+        
         // tsl: sleep
+        _logger->info("Mertiko sleep checking file");
+        std::ifstream fin2("/astraea-spans/sleeps");
+        std::string sleep;
 
-        std::ifstream fin("/astraea-spans/sleeps");
-        std::string s;
-
-        while (getline(fin,s)) {
+        while (getline(fin2,sleep)) {
             if (s.find(operationName) != std::string::npos) {
                 
-                // sleep now
-                    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
                 std::default_random_engine generator(seed);
                 
                 std::normal_distribution<> d{100,30};
                 int x = std::round(d(generator));
-                // cout<<x;
-                LOG(info) << "*Mert compose_creator_client sleep microseconds*";
-                LOG(info) << x;
+                 _logger->info("Mertiko sleep microseconds");
+                 _logger->info(x);
                 std::this_thread::sleep_for(std::chrono::microseconds(x));
             }
         }
-
-
 
         const auto result = analyzeReferences(options.references);
         const auto* parent = result._parent;
