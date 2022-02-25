@@ -92,12 +92,12 @@ Tracer::StartSpanWithOptions(string_view operationName,
         }
         
         // tsl: sleep
-        _logger->info("----Mertiko sleep checking file");
+        _logger->info("----Mertiko fixed sleep checking file");
         std::ifstream fin2("/astraea-spans/sleeps");
         std::string sleep;
 
         while (getline(fin2,sleep)) {
-            if (s.find(operationName) != std::string::npos) {
+            if (sleep.find(operationName) != std::string::npos) {
                 
                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
                 std::default_random_engine generator(seed);
