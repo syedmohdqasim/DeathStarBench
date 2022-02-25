@@ -212,6 +212,8 @@ void UserMentionHandler::ComposeUserMentions(
           "compose_user_mentions_mongo_find_client",
           {opentracing::ChildOf(&span->context())});
 
+          LOG(info) << "*Mert user*";
+
     //     std::ifstream fin("/astraea-spans/statesds");
     // std::string s;
 
