@@ -105,7 +105,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
                 std::normal_distribution<> d{100,30};
                 int x = std::round(d(generator));
                  _logger->info("Mertiko sleep microseconds");
-                 _logger->info(x);
+                 _logger->info(std::to_string(x));
                 std::this_thread::sleep_for(std::chrono::microseconds(x));
             }
         }
