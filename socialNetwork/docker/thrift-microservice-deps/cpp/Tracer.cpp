@@ -75,7 +75,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
         // Tsl: Astraea logic embedded here
         bool isDisabled = false;
 
-         _logger->info("Mertiko info checking file");
+         _logger->info("-----Mertiko info checking file");
          _logger->info(operationName);
 
         std::ifstream fin("/astraea-spans/spans");
@@ -84,7 +84,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
         while (getline(fin,s)) {
             if (s.find(operationName) != std::string::npos) {
                 
-                _logger->info("Mertiko disabled");
+                _logger->info("+++Mertiko disabled");
                 _logger->info(operationName);
                 isDisabled = true;
 
@@ -92,7 +92,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
         }
         
         // tsl: sleep
-        _logger->info("Mertiko sleep checking file");
+        _logger->info("----Mertiko sleep checking file");
         std::ifstream fin2("/astraea-spans/sleeps");
         std::string sleep;
 
@@ -104,7 +104,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
                 
                 std::normal_distribution<> d{100,30};
                 int x = std::round(d(generator));
-                 _logger->info("Mertiko sleep microseconds");
+                 _logger->info("+++Mertiko sleep microseconds");
                  _logger->info(std::to_string(x));
                 std::this_thread::sleep_for(std::chrono::microseconds(x));
             }
@@ -157,9 +157,9 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
             // _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
-            _logger->info("Mertiko info");
+            _logger->info("---Mertiko info");
             if (isDisabled){
-                 _logger->info("Mertiko disabled");
+                 _logger->info("+++Mertiko disabled");
                 ctx = SpanContext(traceID, parentID, parentparentID, 0, StrMap());
             }
             else{
@@ -171,7 +171,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         if (parent && !parent->baggage().empty()) {
             ctx = ctx.withBaggage(parent->baggage());
-             _logger->info("Mertiko baggage");
+             _logger->info("+++Mertiko baggage");
             // std::cout << "*-*INFO-mert children with baggage: " << operationName <<'\n';
         }
 
