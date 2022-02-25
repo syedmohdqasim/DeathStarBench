@@ -78,26 +78,26 @@ void UserTimelineHandler::WriteUserTimeline(
       "write_user_timeline_server", {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
 
-  std::ifstream fin("/astraea-spans/statesds");
-    std::string s;
+  // std::ifstream fin("/astraea-spans/statesds");
+  //   std::string s;
 
-    LOG(info) << "*Mert";
-    while (getline(fin,s)) {
-        LOG(info) << s;
-        if (s.find("write_user_timeline_server") != std::string::npos) {
+  //   LOG(info) << "*Mert";
+  //   while (getline(fin,s)) {
+  //       LOG(info) << s;
+  //       if (s.find("write_user_timeline_server") != std::string::npos) {
             
-            // sleep now
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-              std::default_random_engine generator(seed);
+  //           // sleep now
+  //               unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  //             std::default_random_engine generator(seed);
               
-              std::normal_distribution<> d{100,30};
-              int x = std::round(d(generator));
-              // cout<<x;
-              LOG(info) << "*Mert write_user_timeline_server sleep*";
-              LOG(info) << x;
-              std::this_thread::sleep_for(std::chrono::microseconds(x));
-        }
-    }
+  //             std::normal_distribution<> d{100,30};
+  //             int x = std::round(d(generator));
+  //             // cout<<x;
+  //             LOG(info) << "*Mert write_user_timeline_server sleep*";
+  //             LOG(info) << x;
+  //             std::this_thread::sleep_for(std::chrono::microseconds(x));
+  //       }
+  //   }
 
   mongoc_client_t *mongodb_client =
       mongoc_client_pool_pop(_mongodb_client_pool);
@@ -164,24 +164,24 @@ void UserTimelineHandler::WriteUserTimeline(
       "write_user_timeline_redis_update_client",
       {opentracing::ChildOf(&span->context())});
 
- std::ifstream fin2("/astraea-spans/statesds");
-    std::string str;
+//  std::ifstream fin2("/astraea-spans/statesds");
+//     std::string str;
 
-    while (getline(fin2,str)) {
-        if (str.find("write_user_timeline_redis_update_client") != std::string::npos) {
+//     while (getline(fin2,str)) {
+//         if (str.find("write_user_timeline_redis_update_client") != std::string::npos) {
             
-            // sleep now
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-              std::default_random_engine generator(seed);
+//             // sleep now
+//                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+//               std::default_random_engine generator(seed);
               
-              std::normal_distribution<> d{100,30};
-              int x = std::round(d(generator));
-              // cout<<x;
-              LOG(info) << "*Mert write_user_timeline_redis_update_client sleep*";
-              LOG(info) << x;
-              std::this_thread::sleep_for(std::chrono::microseconds(x));
-        }
-    }
+//               std::normal_distribution<> d{100,30};
+//               int x = std::round(d(generator));
+//               // cout<<x;
+//               LOG(info) << "*Mert write_user_timeline_redis_update_client sleep*";
+//               LOG(info) << x;
+//               std::this_thread::sleep_for(std::chrono::microseconds(x));
+//         }
+//     }
 
   try {
     if (_redis_client_pool)

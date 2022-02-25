@@ -132,24 +132,24 @@ Creator ComposePostHandler::_ComposeCreaterHelper(
 
 // tsl: sleep
 
-    std::ifstream fin("/astraea-spans/statesds");
-    std::string s;
+    // std::ifstream fin("/astraea-spans/statesds");
+    // std::string s;
 
-    while (getline(fin,s)) {
-        if (s.find("compose_creator_client") != std::string::npos) {
+    // while (getline(fin,s)) {
+    //     if (s.find("compose_creator_client") != std::string::npos) {
             
-            // sleep now
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-              std::default_random_engine generator(seed);
+    //         // sleep now
+    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    //           std::default_random_engine generator(seed);
               
-              std::normal_distribution<> d{100,30};
-              int x = std::round(d(generator));
-              // cout<<x;
-              LOG(info) << "*Mert compose_creator_client sleep*";
-              LOG(info) << x;
-              std::this_thread::sleep_for(std::chrono::microseconds(x));
-        }
-    }
+    //           std::normal_distribution<> d{100,30};
+    //           int x = std::round(d(generator));
+    //           // cout<<x;
+    //           LOG(info) << "*Mert compose_creator_client sleep*";
+    //           LOG(info) << x;
+    //           std::this_thread::sleep_for(std::chrono::microseconds(x));
+    //     }
+    // }
   auto user_client_wrapper = _user_service_client_pool->Pop();
   if (!user_client_wrapper) {
     ServiceException se;
@@ -203,24 +203,24 @@ TextServiceReturn ComposePostHandler::_ComposeTextHelper(
   }
 // tsl: sleep
 
-    std::ifstream fin("/astraea-spans/statesds");
-    std::string s;
+    // std::ifstream fin("/astraea-spans/statesds");
+    // std::string s;
 
-    while (getline(fin,s)) {
-        if (s.find("compose_text_client") != std::string::npos) {
+    // while (getline(fin,s)) {
+    //     if (s.find("compose_text_client") != std::string::npos) {
             
-            // sleep now
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-              std::default_random_engine generator(seed);
+    //         // sleep now
+    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    //           std::default_random_engine generator(seed);
               
-              std::normal_distribution<> d{100,30};
-              int x = std::round(d(generator));
-              // cout<<x;
-              LOG(info) << "*Mert compose_text_client sleep*";
-              LOG(info) << x;
-              std::this_thread::sleep_for(std::chrono::microseconds(x));
-        }
-    }
+    //           std::normal_distribution<> d{100,30};
+    //           int x = std::round(d(generator));
+    //           // cout<<x;
+    //           LOG(info) << "*Mert compose_text_client sleep*";
+    //           LOG(info) << x;
+    //           std::this_thread::sleep_for(std::chrono::microseconds(x));
+    //     }
+    // }
   auto text_client = text_client_wrapper->GetClient();
   TextServiceReturn _return_text;
   try {
@@ -254,24 +254,24 @@ std::vector<Media> ComposePostHandler::_ComposeMediaHelper(
 
   // tsl: sleep
 
-    std::ifstream fin("/astraea-spans/statesds");
-    std::string s;
+    // std::ifstream fin("/astraea-spans/statesds");
+    // std::string s;
 
-    while (getline(fin,s)) {
-        if (s.find("compose_media_client") != std::string::npos) {
+    // while (getline(fin,s)) {
+    //     if (s.find("compose_media_client") != std::string::npos) {
             
-            // sleep now
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-              std::default_random_engine generator(seed);
+    //         // sleep now
+    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    //           std::default_random_engine generator(seed);
               
-              std::normal_distribution<> d{100,30};
-              int x = std::round(d(generator));
-              // cout<<x;
-              LOG(info) << "*Mert compose_media_clientsleep*";
-              LOG(info) << x;
-              std::this_thread::sleep_for(std::chrono::microseconds(x));
-        }
-    }
+    //           std::normal_distribution<> d{100,30};
+    //           int x = std::round(d(generator));
+    //           // cout<<x;
+    //           LOG(info) << "*Mert compose_media_clientsleep*";
+    //           LOG(info) << x;
+    //           std::this_thread::sleep_for(std::chrono::microseconds(x));
+    //     }
+    // }
 
   auto media_client_wrapper = _media_service_client_pool->Pop();
   if (!media_client_wrapper) {

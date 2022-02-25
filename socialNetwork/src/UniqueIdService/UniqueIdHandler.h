@@ -76,26 +76,26 @@ int64_t UniqueIdHandler::ComposeUniqueId(
       "compose_unique_id_server", {opentracing::ChildOf(parent_span->get())});
   opentracing::Tracer::Global()->Inject(span->context(), writer);
 
-        std::ifstream fin("/astraea-spans/statesds");
-    std::string s;
+    //     std::ifstream fin("/astraea-spans/statesds");
+    // std::string s;
 
-    LOG(info) << "*Mert";
-    while (getline(fin,s)) {
-        LOG(info) << s;
-        if (s.find("compose_unique_id_server") != std::string::npos) {
+    // LOG(info) << "*Mert";
+    // while (getline(fin,s)) {
+    //     LOG(info) << s;
+    //     if (s.find("compose_unique_id_server") != std::string::npos) {
             
-            // sleep now
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-              std::default_random_engine generator(seed);
+    //         // sleep now
+    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    //           std::default_random_engine generator(seed);
               
-              std::normal_distribution<> d{100,30};
-              int x = std::round(d(generator));
-              // cout<<x;
-              LOG(info) << "*Mert compose_unique_id_server sleep*";
-              LOG(info) << x;
-              std::this_thread::sleep_for(std::chrono::microseconds(x));
-        }
-    }
+    //           std::normal_distribution<> d{100,30};
+    //           int x = std::round(d(generator));
+    //           // cout<<x;
+    //           LOG(info) << "*Mert compose_unique_id_server sleep*";
+    //           LOG(info) << x;
+    //           std::this_thread::sleep_for(std::chrono::microseconds(x));
+    //     }
+    // }
 
   _thread_lock->lock();
   int64_t timestamp =

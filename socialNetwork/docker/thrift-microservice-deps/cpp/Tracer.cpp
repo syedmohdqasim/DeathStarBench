@@ -26,6 +26,11 @@
 #include <tuple>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <random>
+#include <cmath>
 
 namespace jaegertracing {
 namespace {
@@ -85,6 +90,30 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             }
         }
+        LOG(info) << "*Mert sleep check*";
+
+        // tsl: sleep
+
+        std::ifstream fin("/astraea-spans/sleeps");
+        std::string s;
+
+        while (getline(fin,s)) {
+            if (s.find(operationName) != std::string::npos) {
+                
+                // sleep now
+                    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+                std::default_random_engine generator(seed);
+                
+                std::normal_distribution<> d{100,30};
+                int x = std::round(d(generator));
+                // cout<<x;
+                LOG(info) << "*Mert compose_creator_client sleep microseconds*";
+                LOG(info) << x;
+                std::this_thread::sleep_for(std::chrono::microseconds(x));
+            }
+        }
+
+
 
         const auto result = analyzeReferences(options.references);
         const auto* parent = result._parent;
@@ -133,9 +162,9 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
             // _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
-            _logger->info("Mertiko info2222");
+            _logger->info("Mertiko info");
             if (isDisabled){
-                 _logger->info("Mertiko 3 disabled");
+                 _logger->info("Mertiko disabled");
                 ctx = SpanContext(traceID, parentID, parentparentID, 0, StrMap());
             }
             else{
