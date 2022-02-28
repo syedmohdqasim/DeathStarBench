@@ -75,40 +75,40 @@ Tracer::StartSpanWithOptions(string_view operationName,
         // Tsl: Astraea logic embedded here
         bool isDisabled = false;
 
-         _logger->info("-----Mertiko info checking file");
-         _logger->info(operationName);
+        //  _logger->info("-----Mertiko info checking file");
+        //  _logger->info(operationName);
 
-        std::ifstream fin("/astraea-spans/spans");
-        std::string s;
+        // std::ifstream fin("/astraea-spans/spans");
+        // std::string s;
 
-        while (getline(fin,s)) {
-            if (s.find(operationName) != std::string::npos) {
+        // while (getline(fin,s)) {
+        //     if (s.find(operationName) != std::string::npos) {
                 
-                _logger->info("+++Mertiko disabled");
-                _logger->info(operationName);
-                isDisabled = true;
+        //         _logger->info("+++Mertiko disabled");
+        //         _logger->info(operationName);
+        //         isDisabled = true;
 
-            }
-        }
+        //     }
+        // }
         
-        // tsl: sleep
-        _logger->info("----Mertiko fixed sleep checking file");
-        std::ifstream fin2("/astraea-spans/sleeps");
-        std::string sleep;
+        // // tsl: sleep
+        // _logger->info("----Mertiko fixed sleep checking file");
+        // std::ifstream fin2("/astraea-spans/sleeps");
+        // std::string sleep;
 
-        while (getline(fin2,sleep)) {
-            if (sleep.find(operationName) != std::string::npos) {
+        // while (getline(fin2,sleep)) {
+        //     if (sleep.find(operationName) != std::string::npos) {
                 
-                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-                std::default_random_engine generator(seed);
+        //         unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+        //         std::default_random_engine generator(seed);
                 
-                std::normal_distribution<> d{100,30};
-                int x = std::round(d(generator));
-                 _logger->info("+++Mertiko sleep microseconds");
-                 _logger->info(std::to_string(x));
-                std::this_thread::sleep_for(std::chrono::microseconds(x));
-            }
-        }
+        //         std::normal_distribution<> d{100,30};
+        //         int x = std::round(d(generator));
+        //          _logger->info("+++Mertiko sleep microseconds");
+        //          _logger->info(std::to_string(x));
+        //         std::this_thread::sleep_for(std::chrono::microseconds(x));
+        //     }
+        // }
 
         const auto result = analyzeReferences(options.references);
         const auto* parent = result._parent;
