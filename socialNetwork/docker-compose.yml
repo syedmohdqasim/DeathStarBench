@@ -6,7 +6,7 @@ services:
     #    ports:
     #      - 10000:9090
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     depends_on:
       jaeger-agent:
         condition: service_started
@@ -42,7 +42,7 @@ services:
   compose-post-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: compose-post-service
     #    ports:
     #      - 10001:9090
@@ -59,7 +59,7 @@ services:
     image: mert/social-network-microservices:latest
     # hostname: post-storage-service
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     ports:
       - 10002:9090
     restart: always
@@ -93,7 +93,7 @@ services:
     #    ports:
     #      - 10003:9090
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     restart: always
     depends_on:
       jaeger-agent:
@@ -122,7 +122,7 @@ services:
   url-shorten-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: url-shorten-service
     #    ports:
     #      - 10004:9090
@@ -154,7 +154,7 @@ services:
   user-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: user-service
     #    ports:
     #      - 10005:9090
@@ -186,7 +186,7 @@ services:
   media-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: media-service
     #    ports:
     #      - 10006:9090
@@ -218,7 +218,7 @@ services:
   text-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: text-service
     #    ports:
     #      - 10007:9090
@@ -234,7 +234,7 @@ services:
   unique-id-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: unique-id-service
     #    ports:
     #      - 10008:9090
@@ -250,7 +250,7 @@ services:
   user-mention-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: user-mention-service
     #    ports:
     #      - 10009:9090
@@ -266,7 +266,7 @@ services:
   home-timeline-service:
     image: mert/social-network-microservices:latest
     cpus: 1
-    memory: 1G
+    mem_limit: 1G
     # hostname: home-timeline-service
     #    ports:
     #      - 10010:9090
