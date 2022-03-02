@@ -10,6 +10,7 @@ ARG LIB_CPP_JWT_VERSION=1.1.1
 ARG LIB_CPP_REDIS_VERSION=4.3.1
 
 ARG BUILD_DEPS="ca-certificates g++ cmake wget git libmemcached-dev automake bison flex libboost-all-dev libevent-dev libssl-dev libtool make pkg-config"
+ADD Tracer.cpp /tmp
 
 RUN apt-get update \
   && apt-get install -y ${BUILD_DEPS} --no-install-recommends \
@@ -68,6 +69,8 @@ RUN apt-get update \
   && wget -O jaeger-client-cpp-${LIB_JAEGER_VERSION}.tar.gz https://github.com/jaegertracing/jaeger-client-cpp/archive/v${LIB_JAEGER_VERSION}.tar.gz \
   && tar -zxf jaeger-client-cpp-${LIB_JAEGER_VERSION}.tar.gz \
   && cd jaeger-client-cpp-${LIB_JAEGER_VERSION} \
+  && mv /tmp/Tracer.cpp src/jaegertracing/ \
+  && echo "mertiko tracer moved" \
   && mkdir -p cmake-build \
   && cd cmake-build \
   && cmake -DCMAKE_CXX_FLAGS="-fPIC" -DHUNTER_ENABLED=0 -DBUILD_TESTING=0 -DJAEGERTRACING_WITH_YAML_CPP=1 -DJAEGERTRACING_BUILD_EXAMPLES=0 .. \
