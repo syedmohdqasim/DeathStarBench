@@ -15,6 +15,8 @@ services:
 #      - 10001:9090
     restart: always
     entrypoint: UniqueIdService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   movie-id-service:
     image: mert/media-microservices:latest
@@ -23,6 +25,8 @@ services:
 #      - 10002:9090
     restart: always
     entrypoint: MovieIdService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   movie-id-mongodb:
     image: mongo
@@ -45,6 +49,8 @@ services:
 #      - 10003:9090
     restart: always
     entrypoint: TextService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   rating-service:
     image: mert/media-microservices:latest
@@ -53,6 +59,8 @@ services:
 #      - 10004:9090
     restart: always
     entrypoint: RatingService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   rating-redis:
     image: redis
@@ -68,6 +76,8 @@ services:
 #      - 10005:9090
     restart: always
     entrypoint: UserService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   user-mongodb:
     image: mongo
@@ -90,6 +100,8 @@ services:
 #      - 10006:9090
     restart: always
     entrypoint: ComposeReviewService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   compose-review-memcached:
     image: memcached
@@ -105,6 +117,8 @@ services:
 #      - 10007:9090
     restart: always
     entrypoint: ReviewStorageService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   review-storage-mongodb:
     image: mongo
@@ -127,6 +141,8 @@ services:
 #      - 10008:9090
     restart: always
     entrypoint: UserReviewService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   user-review-mongodb:
     image: mongo
@@ -149,6 +165,8 @@ services:
 #      - 10009:9090
     restart: always
     entrypoint: MovieReviewService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   movie-review-mongodb:
     image: mongo
@@ -183,6 +201,8 @@ services:
 #      - 10010:9090
     restart: always
     entrypoint: CastInfoService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   cast-info-mongodb:
     image: mongo
@@ -205,6 +225,8 @@ services:
 #      - 10011:9090
     restart: always
     entrypoint: PlotService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   plot-mongodb:
     image: mongo
@@ -227,6 +249,8 @@ services:
 #      - 10012:9090
     restart: always
     entrypoint: MovieInfoService
+    volumes:
+      - /local/astraea-spans:/astraea-spans
 
   movie-info-mongodb:
     image: mongo
