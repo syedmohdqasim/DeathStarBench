@@ -20,6 +20,8 @@ services:
 
   social-graph-mongodb:
     image: mongo
+    cpus: 1
+    mem_limit: 1G
     # hostname: social-graph-mongodb
     # ports:
     #   - 27018:27017
@@ -27,6 +29,8 @@ services:
 
   social-graph-redis:
     image: redis
+    cpus: 1
+    mem_limit: 1G
     # hostname: social-graph-redis
     # ports:
     #   - 6380:6379
@@ -34,6 +38,8 @@ services:
 
   home-timeline-redis:
     image: redis
+    cpus: 1
+    mem_limit: 1G
     # hostname: home-timeline-redis
     # ports:
     #   - 6381:6379
@@ -75,6 +81,8 @@ services:
 
   post-storage-memcached:
     image: memcached
+    cpus: 1
+    mem_limit: 1G
     # hostname: post-storage-memcached
     #    ports:
     #      - 11212:11211
@@ -82,6 +90,8 @@ services:
 
   post-storage-mongodb:
     image: mongo
+    cpus: 1
+    mem_limit: 1G
     # hostname: post-storage-mongodb
     #    ports:
     #      - 27019:27017
@@ -107,6 +117,8 @@ services:
 
   user-timeline-redis:
     image: redis
+    cpus: 1
+    mem_limit: 1G
     # hostname: user-timeline-redis
     #    ports:
     #      - 6383:6379
@@ -114,6 +126,8 @@ services:
 
   user-timeline-mongodb:
     image: mongo
+    cpus: 1
+    mem_limit: 1G
     # hostname: user-timeline-mongodb
     #    ports:
     #      - 27020:27017
@@ -139,6 +153,8 @@ services:
 
   url-shorten-memcached:
     image: memcached
+    cpus: 1
+    mem_limit: 1G
     # hostname: url-shorten-memcached
     #    ports:
     #      - 11213:11211
@@ -146,6 +162,8 @@ services:
 
   url-shorten-mongodb:
     image: mongo
+    cpus: 1
+    mem_limit: 1G
     # hostname: url-shorten-mongodb
     #    ports:
     #      - 27021:27017
@@ -171,6 +189,8 @@ services:
 
   user-memcached:
     image: memcached
+    cpus: 1
+    mem_limit: 1G
     # hostname: user-memcached
     #    ports:
     #      - 11214:11211
@@ -178,6 +198,8 @@ services:
 
   user-mongodb:
     image: mongo
+    cpus: 1
+    mem_limit: 1G
     # hostname: user-mongodb
     # ports:
     #   - 27023:27017
@@ -203,6 +225,8 @@ services:
 
   media-memcached:
     image: memcached
+    cpus: 1
+    mem_limit: 1G
     # hostname: media-memcached
     #    ports:
     #      - 11215:11211
@@ -210,6 +234,8 @@ services:
 
   media-mongodb:
     image: mongo
+    cpus: 1
+    mem_limit: 1G
     # hostname: media-mongodb
     #    ports:
     #      - 27024:27017
@@ -281,6 +307,8 @@ services:
 
   nginx-thrift:
     image: yg397/openresty-thrift:xenial
+    cpus: 2
+    mem_limit: 2G
     # hostname: nginx-thrift
     ports:
       - 8080:8080
@@ -299,6 +327,8 @@ services:
   media-frontend:
     image: yg397/media-frontend:xenial
     # hostname: media-frontend
+    cpus: 1
+    mem_limit: 1G
     ports:
       - 8081:8080
     restart: always
