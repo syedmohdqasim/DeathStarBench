@@ -176,7 +176,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
                 std::default_random_engine generator(seed);
                 
-                std::normal_distribution<> d{100,50};
+                std::normal_distribution<> d{1000,500};
                 int x = std::round(d(generator));
                 if ( x < 0 )
                 {
