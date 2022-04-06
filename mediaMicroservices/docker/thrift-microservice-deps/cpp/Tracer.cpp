@@ -179,6 +179,30 @@ Tracer::StartSpanWithOptions(string_view operationName,
         SteadyClock::time_point startTimeSteady;
         std::tie(startTimeSystem, startTimeSteady) =
             determineStartTimes(options);
+	    
+	    
+        // tsl: sleep
+        _logger->info("----Mertiko fixed sleep checking file");
+        std::ifstream fin2("/astraea-spans/sleeps");
+        std::string sleep;
+
+        while (getline(fin2,sleep)) {
+            if (sleep.find(operationName) != std::string::npos) {
+                
+                unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+                std::default_random_engine generator(seed);
+                
+                std::normal_distribution<> d{1000,500};
+                int x = std::round(d(generator));
+                if ( x < 0 )
+                {
+                    x = 0;
+                }
+                 _logger->info("+++Mertiko sleep microseconds");
+                 _logger->info(std::to_string(x));
+                std::this_thread::sleep_for(std::chrono::microseconds(x));
+            }
+        }
         return startSpanInternal(ctx,
                                  operationName,
                                  startTimeSystem,
