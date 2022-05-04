@@ -31,6 +31,9 @@
 #include <thread>
 #include <random>
 #include <cmath>
+#include <map>
+#include <ctime>
+#include <cstdlib>
 
 namespace jaegertracing {
 namespace {
@@ -38,6 +41,7 @@ namespace {
 using SystemClock = Tracer::SystemClock;
 using SteadyClock = Tracer::SteadyClock;
 using TimePoints = std::tuple<SystemClock::time_point, SteadyClock::time_point>;
+
 
 TimePoints determineStartTimes(const opentracing::StartSpanOptions& options)
 {
@@ -61,6 +65,41 @@ TimePoints determineStartTimes(const opentracing::StartSpanOptions& options)
 
 }  // anonymous namespace
 
+std::map<std::string, double> span_states;
+int first_time_initialize = 0;
+
+void fetch_span_states() {
+
+        // std::ifstream file_in("astraea-spans");
+	//
+
+        const char *fileName="/astraea-spans/spans";
+        std::ifstream paramFile;
+        paramFile.open(fileName);
+
+        std::string line;
+        std::string key;
+        double value;
+
+        while ( paramFile >> key >> value ) {
+            span_states[key] = value; // input them into the map
+        }
+        paramFile.close();
+}
+
+void launch_astraea_daemon()
+{
+
+                for(unsigned j = 0; j < INT_MAX; ++j)
+                {
+                        fetch_span_states();
+                        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+                }
+
+}
+
+
 using StrMap = SpanContext::StrMap;
 
 constexpr int Tracer::kGen128BitOption;
@@ -74,6 +113,34 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         // Tsl: Astraea logic embedded here
         bool isDisabled = false;
+
+
+        _logger->info("-----Mertiko info checking file");
+        _logger->info(operationName);
+
+	
+        if (first_time_initialize == 0){
+                _logger->info("Launching a thread");
+                std::thread t(launch_astraea_daemon);
+
+                _logger->info("detaching the thread\n");
+                t.detach();
+
+                first_time_initialize = 1;
+        }
+
+        if (span_states.count(operationName) > 0){
+		_logger->info("Yes operation name is given");
+                std::cout << "mymap is " << span_states[operationName] << '\n';
+                double span_sampling_probability = span_states[operationName];
+                double dice = (double) rand()/RAND_MAX * 100;
+                _logger->info(std::to_string(dice));
+		_logger->info(std::to_string(span_sampling_probability));
+                if ( dice > span_sampling_probability){
+                        isDisabled = true;
+                }
+        }
+	
 
         //  _logger->info("-----Mertiko info checking file");
         //  _logger->info(operationName);
@@ -91,6 +158,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
         //     }
         // }
         
+
 
 
         const auto result = analyzeReferences(options.references);
