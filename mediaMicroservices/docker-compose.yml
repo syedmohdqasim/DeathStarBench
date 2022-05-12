@@ -44,6 +44,8 @@ services:
   movie-id-memcached:
     image: memcached
     hostname: movie-id-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11212:11211
     restart: always
@@ -75,6 +77,8 @@ services:
   rating-redis:
     image: redis
     hostname: rating-redis
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 6382:6379
     restart: always
@@ -94,6 +98,8 @@ services:
   user-mongodb:
     image: mongo
     hostname: user-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27019:27017
     restart: always
@@ -101,6 +107,8 @@ services:
   user-memcached:
     image: memcached
     hostname: user-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11213:11211
     restart: always
@@ -120,6 +128,8 @@ services:
   compose-review-memcached:
     image: memcached
     hostname: compose-review-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11214:11211
     restart: always
@@ -139,6 +149,8 @@ services:
   review-storage-mongodb:
     image: mongo
     hostname: review-storage-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27020:27017
     restart: always
@@ -146,6 +158,8 @@ services:
   review-storage-memcached:
     image: memcached
     hostname: review-storage-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11215:11211
     restart: always
@@ -165,6 +179,8 @@ services:
   user-review-mongodb:
     image: mongo
     hostname: user-review-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27021:27017
     restart: always
@@ -172,6 +188,8 @@ services:
   user-review-redis:
     image: redis
     hostname: user-review-redis
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 6381:6379
     restart: always
@@ -191,6 +209,8 @@ services:
   movie-review-mongodb:
     image: mongo
     hostname: movie-review-mongodb
+    cpus: 1
+    mem_limit: 1G
     ports:
       - 27022:27017
     restart: always
@@ -198,6 +218,8 @@ services:
   movie-review-redis:
     image: redis
     hostname: movie-review-redis
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 6380:6379
     restart: always
@@ -205,6 +227,8 @@ services:
   nginx-web-server:
     image: yg397/openresty-thrift:xenial
     hostname: nginx-thrift
+    cpus: 2
+    mem_limit: 2G
     ports:
       - 8080:8080
     restart: always
@@ -229,6 +253,8 @@ services:
   cast-info-mongodb:
     image: mongo
     hostname: cast-info-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27024:27017
     restart: always
@@ -236,6 +262,8 @@ services:
   cast-info-memcached:
     image: memcached
     hostname: cast-info-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11219:11211
     restart: always
@@ -255,6 +283,8 @@ services:
   plot-mongodb:
     image: mongo
     hostname: plot-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27025:27017
     restart: always
@@ -262,6 +292,8 @@ services:
   plot-memcached:
     image: memcached
     hostname: plot-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11220:11211
     restart: always
@@ -281,6 +313,8 @@ services:
   movie-info-mongodb:
     image: mongo
     hostname: movie-info-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27026:27017
     restart: always
@@ -288,6 +322,8 @@ services:
   movie-info-memcached:
     image: memcached
     hostname: movie-info-memcached
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 11221:11211
     restart: always
