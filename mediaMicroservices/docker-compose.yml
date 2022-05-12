@@ -11,6 +11,8 @@ services:
   unique-id-service:
     image: mert/media-microservices:latest
     hostname: unique-id-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10001:9090
     restart: always
@@ -21,6 +23,8 @@ services:
   movie-id-service:
     image: mert/media-microservices:latest
     hostname: movie-id-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10002:9090
     restart: always
@@ -31,6 +35,8 @@ services:
   movie-id-mongodb:
     image: mongo
     hostname: movie-id-mongodb
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 27018:27017
     restart: always
@@ -45,6 +51,8 @@ services:
   text-service:
     image: mert/media-microservices:latest
     hostname: text-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10003:9090
     restart: always
@@ -55,6 +63,8 @@ services:
   rating-service:
     image: mert/media-microservices:latest
     hostname: rating-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10004:9090
     restart: always
@@ -72,6 +82,8 @@ services:
   user-service:
     image: mert/media-microservices:latest
     hostname: user-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10005:9090
     restart: always
@@ -96,6 +108,8 @@ services:
   compose-review-service:
     image: mert/media-microservices:latest
     hostname: compose-review-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10006:9090
     restart: always
@@ -113,6 +127,8 @@ services:
   review-storage-service:
     image: mert/media-microservices:latest
     hostname: review-storage-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10007:9090
     restart: always
@@ -137,6 +153,8 @@ services:
   user-review-service:
     image: mert/media-microservices:latest
     hostname: user-review-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10008:9090
     restart: always
@@ -161,6 +179,8 @@ services:
   movie-review-service:
     image: mert/media-microservices:latest
     hostname: movie-review-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10009:9090
     restart: always
@@ -197,6 +217,8 @@ services:
   cast-info-service:
     image: mert/media-microservices:latest
     hostname: cast-info-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10010:9090
     restart: always
@@ -221,6 +243,8 @@ services:
   plot-service:
     image: mert/media-microservices:latest
     hostname: plot-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10011:9090
     restart: always
@@ -245,6 +269,8 @@ services:
   movie-info-service:
     image: mert/media-microservices:latest
     hostname: movie-info-service
+    cpus: 1
+    mem_limit: 1G
 #    ports:
 #      - 10012:9090
     restart: always
