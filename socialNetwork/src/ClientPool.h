@@ -83,6 +83,7 @@ TClient * ClientPool<TClient>::Pop() {
   {
     std::unique_lock<std::mutex> cv_lock(_mtx);
     while (_pool.size() == 0 && _curr_pool_size == _max_pool_size) {
+      LOG(warning) << "Mertiko: " << _pool.size() << " " << _curr_pool_size;
       // Create a new a client if current pool size is less than
       // the max pool size.
       auto wait_time = std::chrono::system_clock::now() +

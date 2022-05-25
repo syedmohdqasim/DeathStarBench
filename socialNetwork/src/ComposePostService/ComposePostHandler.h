@@ -128,28 +128,8 @@ Creator ComposePostHandler::_ComposeCreaterHelper(
   TextMapWriter writer(writer_text_map);
   opentracing::Tracer::Global()->Inject(span->context(), writer);
  
-  LOG(info) << "*Mert*";
+  LOG(warning) << "Merdali";
 
-// tsl: sleep
-
-    // std::ifstream fin("/astraea-spans/statesds");
-    // std::string s;
-
-    // while (getline(fin,s)) {
-    //     if (s.find("compose_creator_client") != std::string::npos) {
-            
-    //         // sleep now
-    //             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    //           std::default_random_engine generator(seed);
-              
-    //           std::normal_distribution<> d{100,30};
-    //           int x = std::round(d(generator));
-    //           // cout<<x;
-    //           LOG(info) << "*Mert compose_creator_client sleep*";
-    //           LOG(info) << x;
-    //           std::this_thread::sleep_for(std::chrono::microseconds(x));
-    //     }
-    // }
   auto user_client_wrapper = _user_service_client_pool->Pop();
   if (!user_client_wrapper) {
     ServiceException se;

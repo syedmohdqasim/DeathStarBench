@@ -107,6 +107,15 @@ int main(int argc, char *argv[]) {
       server_socket,
       std::make_shared<TFramedTransportFactory>(),
       std::make_shared<TBinaryProtocolFactory>());
-  LOG(info) << "Starting the compose-post-service server ...";
+  LOG(warning) << "Starting the compose-post-service server ...";
+
+  LOG(warning) << "With connections of user " << user_conns << " keep alive " << user_keepalive; 
+  LOG(warning) << "With connections of post_storage_client_pool " << post_storage_conns; 
+  LOG(warning) << "With connections of user_timeline_client_pool " << user_timeline_conns; 
+  LOG(warning) << "With connections of text_client_pool " << text_conns; 
+  LOG(warning) << "With connections of media_client_pool " << media_conns; 
+
+  LOG(warning) << "With connections of home_timeline_client_pool " << home_timeline_conns; 
+  LOG(warning) << "With connections of unique_id_client_pool " << unique_id_conns; 
   server.serve();
 }
