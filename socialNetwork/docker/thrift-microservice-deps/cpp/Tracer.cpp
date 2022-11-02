@@ -115,8 +115,8 @@ Tracer::StartSpanWithOptions(string_view operationName,
         bool isDisabled = false;
 
 
-        _logger->info("-----Mertiko info checking file");
-        _logger->info(operationName);
+//         _logger->info("-----Mertiko info checking file");
+//         _logger->info(operationName);
 
 	
         if (first_time_initialize == 0){
@@ -130,12 +130,12 @@ Tracer::StartSpanWithOptions(string_view operationName,
         }
 
         if (span_states.count(operationName) > 0){
-		_logger->info("Yes operation name is given");
-                std::cout << "mymap is " << span_states[operationName] << '\n';
+// 		_logger->info("Yes operation name is given");
+//                 std::cout << "mymap is " << span_states[operationName] << '\n';
                 double span_sampling_probability = span_states[operationName];
                 double dice = (double) rand()/RAND_MAX * 100;
-                _logger->info(std::to_string(dice));
-		_logger->info(std::to_string(span_sampling_probability));
+//                 _logger->info(std::to_string(dice));
+// 		_logger->info(std::to_string(span_sampling_probability));
                 if ( dice > span_sampling_probability){
                         isDisabled = true;
                 }
@@ -208,9 +208,9 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
             // _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
-            _logger->info("---Mertiko info");
+//             _logger->info("---Mertiko info");
             if (isDisabled){
-                 _logger->info("+++Mertiko disabled");
+//                  _logger->info("+++Mertiko disabled");
                 ctx = SpanContext(traceID, parentID, parentparentID, 0, StrMap());
             }
             else{
@@ -222,7 +222,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         if (parent && !parent->baggage().empty()) {
             ctx = ctx.withBaggage(parent->baggage());
-             _logger->info("+++Mertiko baggage");
+//              _logger->info("+++Mertiko baggage");
             // std::cout << "*-*INFO-mert children with baggage: " << operationName <<'\n';
         }
 
@@ -234,7 +234,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
 
         // tsl: sleep
-        _logger->info("----Mertiko fixed sleep checking file");
+//         _logger->info("----Mertiko fixed sleep checking file");
         std::ifstream fin2("/astraea-spans/sleeps");
         std::string sleep;
 
@@ -244,14 +244,16 @@ Tracer::StartSpanWithOptions(string_view operationName,
                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
                 std::default_random_engine generator(seed);
                 
-                std::normal_distribution<> d{1000,500};
+                std::normal_distribution<> d{5000,1000};
                 int x = std::round(d(generator));
                 if ( x < 0 )
                 {
                     x = 0;
                 }
+		 _logger->info(operationName);
                  _logger->info("+++Mertiko sleep microseconds");
                  _logger->info(std::to_string(x));
+		  
                 std::this_thread::sleep_for(std::chrono::microseconds(x));
             }
         }
