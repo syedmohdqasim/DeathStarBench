@@ -46,7 +46,7 @@ services:
     restart: always
 
   compose-post-service:
-    image: mert/social-network-microservices:latest
+    image: sqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: compose-post-service
