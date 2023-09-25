@@ -1,11 +1,11 @@
 #!/bin/bash
 
 cd $(dirname $0)/..
-NS="social-network"
+NS="ai4cloudops-f7f10d9"
 
-oc create namespace ${NS}
-oc adm policy add-scc-to-user anyuid -z default -n ${NS}
-oc adm policy add-scc-to-user privileged -z default -n ${NS}
+#oc create namespace ${NS}
+#oc adm policy add-scc-to-user anyuid -z default -n ${NS}
+#oc adm policy add-scc-to-user privileged -z default -n ${NS}
 
 ./scripts/create-all-configmap.sh
 

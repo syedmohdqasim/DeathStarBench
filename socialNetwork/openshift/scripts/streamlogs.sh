@@ -15,9 +15,9 @@ for d in compose-post-redis compose-post-service home-timeline-redis home-timeli
 do
 	if [[ ${NOTS} -eq 1 ]]
 	then
-		oc logs -f deployment/${d} --all-containers -n social-network &
+		oc logs -f deployment/${d} --all-containers -n ai4cloudops-f7f10d9 &
 	else
-		oc logs -f deployment/${d} --all-containers -n social-network | ts "${d}: " &
+		oc logs -f deployment/${d} --all-containers -n ai4cloudops-f7f10d9 | ts "${d}: " &
 	fi
 done
 

@@ -21,7 +21,7 @@ Run the script `<path-of-repo>/socialNetwork/openshift/scripts/deploy-all-servic
 ### Using `ubuntu-client` as an "on-cluster" client
 
 After customization, If you are running "on-cluster" copy necessary files to `ubuntu-client`, and then log into `ubuntu-client` to continue:
-  - `ubuntuclient=$(oc -n social-network get pod | grep ubuntu-client- | cut -f 1 -d " ")`
+  - `ubuntuclient=$(oc -n ai4cloudops-f7f10d9 get pod | grep ubuntu-client- | cut -f 1 -d " ")`
   - `oc cp <path-of-repo> social-network/"${ubuntuclient}":/root`
     - e.g., `oc cp /root/DeathStarBench social-network/"${ubuntuclient}":/root`
   - `oc rsh deployment/ubuntu-client`
@@ -30,7 +30,7 @@ After customization, If you are running "on-cluster" copy necessary files to `ub
 ### Register users and construct social graphs
 
 - If using an off-cluster client:
-  - Use `oc -n social-network get svc nginx-thrift` to get the cluster-ip.
+  - Use `oc -n ai4cloudops-f7f10d9 get svc nginx-thrift` to get the cluster-ip.
   - Paste the cluster ip at `<path-of-repo>/socialNetwork/scripts/init_social_graph.py:72`
 - If using an on-cluster client:
   - Use `nginx-thrift.social-network.svc.cluster.local` as cluster-ip and paste it at `<path-of-repo>/socialNetwork/scripts/init_social_graph.py:72`
@@ -75,7 +75,7 @@ cd <path-of-repo>/socialNetwork/wrk2
 
 #### View Jaeger traces
 
-Use `oc -n social-network get svc jaeger-out` to get the NodePort of jaeger service.
+Use `oc -n ai4cloudops-f7f10d9 get svc jaeger-out` to get the NodePort of jaeger service.
 
  View Jaeger traces by accessing `http://<node-ip>:<NodePort>`
 

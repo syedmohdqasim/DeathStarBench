@@ -8,7 +8,7 @@ metadata:
   labels:
     death-star-project: social-network
     app: compose-post-service
-  namespace: social-network
+  namespace: ai4cloudops-f7f10d9
 spec:
   ports:
   - port: 9090
@@ -23,7 +23,7 @@ metadata:
   labels:
     death-star-project: social-network
     app: compose-post-service
-  namespace: social-network
+  namespace: ai4cloudops-f7f10d9
 spec:
   replicas: 1
   selector:
@@ -45,6 +45,8 @@ spec:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
             subPath: jaeger-config.yml
             name: jaeger-conf-yaml
+      imagePullSecrets:
+        - name: regcred
       restartPolicy: Always
       volumes:
         - name: jaeger-conf-yaml

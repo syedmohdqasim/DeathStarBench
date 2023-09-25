@@ -1,7 +1,7 @@
 
 cd $(dirname $0)/..
 
-NS="social-network"
+NS="ai4cloudops-f7f10d9"
 
 oc create namespace ${NS}
 

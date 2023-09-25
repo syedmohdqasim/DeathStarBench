@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NS="social-network"
+NS="ai4cloudops-f7f10d9"
 
 function finish {
 cd $(dirname $0)/../..
