@@ -1,5 +1,4 @@
-FROM mert/thrift-microservice-deps:xenial AS builder
-
+FROM merttoslali/thrift-microservice-deps:xenial AS builder
 COPY ./ /social-network-microservices
 RUN cd /social-network-microservices \
     && mkdir -p build \

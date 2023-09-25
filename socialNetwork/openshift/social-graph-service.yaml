@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: social-graph-service
-        image: yg397/social-network-microservices
+        image: smqasim/social-network-microservices:latest
         command: ["SocialGraphService"]
         volumeMounts:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
