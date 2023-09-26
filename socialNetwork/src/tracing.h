@@ -72,9 +72,12 @@ void SetUpTracer(
       opentracing::Tracer::InitGlobal(
       std::static_pointer_cast<opentracing::Tracer>(tracer));
     }
-    catch(...)
+    catch(const std::exception& e)
     {
+
+      LOG(error) <<"Error: " << e.what() << std::endl;
       LOG(error) << "Failed to connect to jaeger, retrying ...";
+
       sleep(1);
     }
   }
