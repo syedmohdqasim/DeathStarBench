@@ -41,6 +41,8 @@ spec:
         volumeMounts:
           - name: my-data
             mountPath: "/data/db"
+      imagePullSecrets:
+        - name: regcred
       restartPolicy: Always
       volumes:
       - name: my-data

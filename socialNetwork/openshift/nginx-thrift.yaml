@@ -75,6 +75,8 @@ spec:
           name: jaeger-conf-json
         - mountPath: /gen-lua
           name: gen-lua
+      imagePullSecrets:
+        - name: regcred
       restartPolicy: Always
       volumes:
       - name: nginx-conf

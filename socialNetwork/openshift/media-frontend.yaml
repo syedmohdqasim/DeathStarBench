@@ -51,6 +51,8 @@ spec:
         - mountPath: /usr/local/openresty/nginx/conf/jaeger-config.yml
           subPath: jaeger-config.yml
           name: jaeger-conf
+      imagePullSecrets:
+        - name: regcred
       restartPolicy: Always
       volumes:
       - name: nginx-conf

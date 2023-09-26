@@ -45,3 +45,5 @@ spec:
       volumes:
       - name: my-data
         emptyDir: {}
+      imagePullSecrets:
+        - name: regcred
