@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: nginx-thrift
-        image: smqasim/openresty-thrift:xenial
+        image: yg397/openresty-thrift:xenial
         ports:
         - containerPort: 8080
         volumeMounts:

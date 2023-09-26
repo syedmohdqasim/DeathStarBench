@@ -62,7 +62,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   post-storage-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     # hostname: post-storage-service
     cpus: 1
     mem_limit: 1G
@@ -98,7 +98,7 @@ services:
     restart: always
 
   user-timeline-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     # hostname: user-timeline-service
     #    ports:
     #      - 10003:9090
@@ -134,7 +134,7 @@ services:
     restart: always
 
   url-shorten-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: url-shorten-service
@@ -170,7 +170,7 @@ services:
     restart: always
 
   user-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: user-service
@@ -206,7 +206,7 @@ services:
     restart: always
 
   media-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: media-service
@@ -242,7 +242,7 @@ services:
     restart: always
 
   text-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: text-service
@@ -258,7 +258,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   unique-id-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: unique-id-service
@@ -274,7 +274,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   user-mention-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: user-mention-service
@@ -290,7 +290,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   home-timeline-service:
-    image: mert/social-network-microservices:latest
+    image: smqasim/social-network-microservices:latest
     cpus: 1
     mem_limit: 1G
     # hostname: home-timeline-service
