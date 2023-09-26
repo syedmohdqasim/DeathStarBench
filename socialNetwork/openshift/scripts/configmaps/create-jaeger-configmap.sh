@@ -12,3 +12,4 @@ oc create cm jaeger-config-yaml  --from-file=config/jaeger-config.yml           
 # the one in the ConfigMap jaeger-config. Then, we create a new ConfigMap.
 oc create cm nginx-thrift-jaeger --from-file=nginx-thrift-config/jaeger-config.json -n ai4cloudops-f7f10d9
 
+oc create cm service-config-json  --from-file=config/service-config.json               -n ai4cloudops-f7f10d9

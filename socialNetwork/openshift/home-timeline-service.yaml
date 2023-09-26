@@ -43,6 +43,10 @@ spec:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
             subPath: jaeger-config.yml
             name: jaeger-conf-yaml
+          - mountPath: /social-network-microservices/config/service-config.json
+            subPath: service-config.json
+            name: service-config-json
+
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
@@ -50,3 +54,6 @@ spec:
         - name: jaeger-conf-yaml
           configMap:
             name: jaeger-config-yaml
+        - name: service-config-json
+          configMap:
+            name: service-config-json
