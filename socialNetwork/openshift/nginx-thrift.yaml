@@ -43,6 +43,18 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
+        - mountPath: /usr/local/openresty/nginx/client_body_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/proxy_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/fastcgi_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/uwsgi_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/scgi_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/logs
+          name: site-data
         - mountPath: /usr/local/openresty/nginx/lua-scripts
           name: lua-scripts
         - mountPath: /usr/local/openresty/nginx/lua-scripts/api/home-timeline
@@ -79,6 +91,8 @@ spec:
         - name: regcred
       restartPolicy: Always
       volumes:
+      - name: site-data
+        emptyDir: {}
       - name: nginx-conf
         configMap:
           name: nginx-thrift

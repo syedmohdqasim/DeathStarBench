@@ -43,6 +43,18 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
+        - mountPath: /usr/local/openresty/nginx/client_body_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/proxy_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/fastcgi_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/uwsgi_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/scgi_temp
+          name: site-data
+        - mountPath: /usr/local/openresty/nginx/logs
+          name: site-data
         - mountPath: /usr/local/openresty/nginx/lua-scripts
           name: lua-conf
         - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
@@ -51,8 +63,7 @@ spec:
         - mountPath: /usr/local/openresty/nginx/conf/jaeger-config.yml
           subPath: jaeger-config.yml
           name: jaeger-conf
-#        - mountPath: /usr/local/openresty/nginx/
-#          name: site-data
+
       imagePullSecrets:
         - name: regcred
       restartPolicy: Always
@@ -69,5 +80,5 @@ spec:
       - name: jaeger-conf
         configMap:
           name: jaeger-config-yaml
-#      - name: site-data
-#        emptyDir: {}
+      - name: site-data
+        emptyDir: {}
