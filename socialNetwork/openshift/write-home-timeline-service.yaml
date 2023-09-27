@@ -40,7 +40,7 @@ spec:
       containers:
       - name: write-home-timeline-service
         image: smqasim/social-network-microservices
-        command: ["WriteHomeTimelineService"]
+        command: ["HomeTimelineService"]
         volumeMounts:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
             subPath: jaeger-config.yml
