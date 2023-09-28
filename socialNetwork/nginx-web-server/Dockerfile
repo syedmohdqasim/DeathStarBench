@@ -4,3 +4,4 @@ COPY pages /usr/local/openresty/nginx/pages
 COPY conf/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 COPY gen-lua /gen-lua
 COPY lua-thrift /usr/local/openresty/lualib/thrift
+RUN chmod -R 777 /usr/local/openresty/nginx/
