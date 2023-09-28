@@ -57,36 +57,36 @@ spec:
           name: site-data
         - mountPath: /usr/local/openresty/nginx/lua-scripts
           name: lua-scripts
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/home-timeline
-          name: lua-scripts-api-home-timeline
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/post
-          name: lua-scripts-api-post
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/user
-          name: lua-scripts-api-user
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/user-timeline
-          name: lua-scripts-api-user-timeline
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/home-timeline
-          name: lua-scripts-wrk2-api-home-timeline
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/post
-          name: lua-scripts-wrk2-api-post
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/user
-          name: lua-scripts-wrk2-api-user
-        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/user-timeline
-          name: lua-scripts-wrk2-api-user-timeline
-        - mountPath: /usr/local/openresty/nginx/pages
-          name: pages
-        - mountPath: /usr/local/openresty/nginx/pages/style
-          name: pages-style
-        - mountPath: /usr/local/openresty/nginx/pages/javascript
-          name: pages-javascript
-        - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
-          subPath: nginx.conf
-          name: nginx-conf
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/home-timeline
+#          name: lua-scripts-api-home-timeline
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/post
+#          name: lua-scripts-api-post
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/user
+#          name: lua-scripts-api-user
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/user-timeline
+#          name: lua-scripts-api-user-timeline
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/home-timeline
+#          name: lua-scripts-wrk2-api-home-timeline
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/post
+#          name: lua-scripts-wrk2-api-post
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/user
+#          name: lua-scripts-wrk2-api-user
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts/wrk2-api/user-timeline
+#          name: lua-scripts-wrk2-api-user-timeline
+#        - mountPath: /usr/local/openresty/nginx/pages
+#          name: pages
+#        - mountPath: /usr/local/openresty/nginx/pages/style
+#          name: pages-style
+#        - mountPath: /usr/local/openresty/nginx/pages/javascript
+#          name: pages-javascript
+#        - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
+#          subPath: nginx.conf
+#          name: nginx-conf
         - mountPath: /usr/local/openresty/nginx/jaeger-config.json
           subPath: jaeger-config.json
           name: jaeger-conf-json
-        - mountPath: /gen-lua
-          name: gen-lua
+#        - mountPath: /gen-lua
+#          name: gen-lua
       imagePullSecrets:
         - name: regcred
       restartPolicy: Always
