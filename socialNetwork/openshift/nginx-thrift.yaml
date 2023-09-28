@@ -39,24 +39,24 @@ spec:
     spec:
       containers:
       - name: nginx-thrift
-        image: yg397/openresty-thrift:xenial
+        image: smqasim/nginx-thrift-webserver:latest
         ports:
         - containerPort: 8080
         volumeMounts:
-        - mountPath: /usr/local/openresty/nginx/client_body_temp
-          name: site-data
-        - mountPath: /usr/local/openresty/nginx/proxy_temp
-          name: site-data
-        - mountPath: /usr/local/openresty/nginx/fastcgi_temp
-          name: site-data
-        - mountPath: /usr/local/openresty/nginx/uwsgi_temp
-          name: site-data
-        - mountPath: /usr/local/openresty/nginx/scgi_temp
-          name: site-data
-        - mountPath: /usr/local/openresty/nginx/logs
-          name: site-data
-        - mountPath: /usr/local/openresty/nginx/lua-scripts
-          name: lua-scripts
+#        - mountPath: /usr/local/openresty/nginx/client_body_temp
+#          name: site-data
+#        - mountPath: /usr/local/openresty/nginx/proxy_temp
+#          name: site-data
+#        - mountPath: /usr/local/openresty/nginx/fastcgi_temp
+#          name: site-data
+#        - mountPath: /usr/local/openresty/nginx/uwsgi_temp
+#          name: site-data
+#        - mountPath: /usr/local/openresty/nginx/scgi_temp
+#          name: site-data
+#        - mountPath: /usr/local/openresty/nginx/logs
+#          name: site-data
+#        - mountPath: /usr/local/openresty/nginx/lua-scripts
+#          name: lua-scripts
 #        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/home-timeline
 #          name: lua-scripts-api-home-timeline
 #        - mountPath: /usr/local/openresty/nginx/lua-scripts/api/post
@@ -79,16 +79,16 @@ spec:
 #          name: pages-style
 #        - mountPath: /usr/local/openresty/nginx/pages/javascript
 #          name: pages-javascript
-#        - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
-#          subPath: nginx.conf
-#          name: nginx-conf
+        - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
+          subPath: nginx.conf
+          name: nginx-conf
         - mountPath: /usr/local/openresty/nginx/jaeger-config.json
           subPath: jaeger-config.json
           name: jaeger-conf-json
 #        - mountPath: /gen-lua
 #          name: gen-lua
-      imagePullSecrets:
-        - name: regcred
+#      imagePullSecrets:
+#        - name: regcred
       restartPolicy: Always
       volumes:
       - name: site-data

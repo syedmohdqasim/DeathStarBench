@@ -23,7 +23,7 @@ function _M.Unfollow()
   local post = ngx.req.get_post_args()
 
   local client = GenericObjectPool:connection(
-      SocialGraphServiceClient, "social-graph-service.social-network.svc.cluster.local", 9090)
+      SocialGraphServiceClient, "social-graph-service.ai4cloudops-f7f10d9.svc.cluster.local", 9090)
 
   local status
   local err
