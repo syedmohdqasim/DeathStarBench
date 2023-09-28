@@ -1,4 +1,8 @@
 local _M = {}
+local k8s_suffix = os.getenv("fqdn_suffix")
+if (k8s_suffix == nil) then
+  k8s_suffix = ""
+end
 
 local function _StrIsEmpty(s)
   return s == nil or s == ''
@@ -35,7 +39,9 @@ local function _LoadTimeline(data)
       new_url["expanded_url"] = url.expanded_url
       table.insert(new_post["urls"], new_url)
     end
+    -- add os.date("*t", timestamp)
     new_post["timestamp"] = tostring(timeline_post.timestamp)
+    --new_post["time"] = os.date("*t", timestamp)
     new_post["post_type"] = timeline_post.post_type
     table.insert(user_timeline, new_post)
   end
@@ -46,7 +52,7 @@ function _M.ReadUserTimeline()
   local bridge_tracer = require "opentracing_bridge_tracer"
   local ngx = ngx
   local GenericObjectPool = require "GenericObjectPool"
-  local UserTimelineServiceClient = require "social_network_UserTimelineService"
+  local UserTimelineServiceClient = require "social_network_UserTimelineService".UserTimelineServiceClient
   local cjson = require "cjson"
   local jwt = require "resty.jwt"
   local liblualongnumber = require "liblualongnumber"
@@ -72,14 +78,18 @@ function _M.ReadUserTimeline()
 
   if (_StrIsEmpty(ngx.var.cookie_login_token)) then
     ngx.status = ngx.HTTP_UNAUTHORIZED
-    ngx.exit(ngx.HTTP_OK)
+    -- ngx.redirect("../../index.html")
+    -- ngx.exit(ngx.HTTP_OK)
+    ngx.exit(ngx.HTTP_UNAUTHORIZED)
   end
 
   local login_obj = jwt:verify(ngx.shared.config:get("secret"), ngx.var.cookie_login_token)
   if not login_obj["verified"] then
     ngx.status = ngx.HTTP_UNAUTHORIZED
-    ngx.say(login_obj.reason);
-    ngx.exit(ngx.HTTP_OK)
+    -- ngx.say(login_obj.reason);
+    -- ngx.redirect("../../index.html")
+    -- ngx.exit(ngx.HTTP_OK)
+    ngx.exit(ngx.HTTP_UNAUTHORIZED)
   end
 
   local timestamp = tonumber(login_obj["payload"]["timestamp"])
@@ -89,8 +99,10 @@ function _M.ReadUserTimeline()
   if (timestamp + ttl < ngx.time()) then
     ngx.status = ngx.HTTP_UNAUTHORIZED
     ngx.header.content_type = "text/plain"
-    ngx.say("Login token expired, please log in again")
-    ngx.exit(ngx.HTTP_OK)
+    -- ngx.say("Login token expired, please log in again")
+    -- ngx.redirect("../../index.html")
+    -- ngx.exit(ngx.HTTP_OK)
+    ngx.exit(ngx.HTTP_UNAUTHORIZED)
   else
     local client = GenericObjectPool:connection(
         UserTimelineServiceClient, "user-timeline-service.ai4cloudops-f7f10d9.svc.cluster.local", 9090)

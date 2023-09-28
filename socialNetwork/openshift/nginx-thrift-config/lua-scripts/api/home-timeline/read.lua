@@ -1,4 +1,8 @@
 local _M = {}
+local k8s_suffix = os.getenv("fqdn_suffix")
+if (k8s_suffix == nil) then
+  k8s_suffix = ""
+end
 
 local function _StrIsEmpty(s)
   return s == nil or s == ''
@@ -35,6 +39,9 @@ local function _LoadTimeline(data)
       new_url["expanded_url"] = url.expanded_url
       table.insert(new_post["urls"], new_url)
     end
+    --add os.date("*t", timestamp)
+    --new_post["time"] = os.date("*t", timestamp)
+    --print(new_post["text"])
     new_post["timestamp"] = tostring(timeline_post.timestamp)
     new_post["post_type"] = timeline_post.post_type
     table.insert(timeline, new_post)
@@ -46,7 +53,7 @@ function _M.ReadHomeTimeline()
   local bridge_tracer = require "opentracing_bridge_tracer"
   local ngx = ngx
   local GenericObjectPool = require "GenericObjectPool"
-  local HomeTimelineServiceClient = require "social_network_HomeTimelineService"
+  local HomeTimelineServiceClient = require "social_network_HomeTimelineService".HomeTimelineServiceClient
   local cjson = require "cjson"
   local jwt = require "resty.jwt"
   local liblualongnumber = require "liblualongnumber"
@@ -63,23 +70,31 @@ function _M.ReadHomeTimeline()
   ngx.req.read_body()
   local args = ngx.req.get_uri_args()
 
+  if (_StrIsEmpty(ngx.var.cookie_login_token)) then
+    ngx.status = ngx.HTTP_UNAUTHORIZED
+    -- ngx.redirect("../../index.html")
+    -- ngx.exit(ngx.HTTP_OK)
+    ngx.exit(ngx.HTTP_UNAUTHORIZED)
+
+  end
+
+
+  local login_obj = jwt:verify(ngx.shared.config:get("secret"), ngx.var.cookie_login_token)
+  if not login_obj["verified"] then
+    ngx.status = ngx.HTTP_UNAUTHORIZED
+    -- ngx.redirect("../../index.html")
+    -- ngx.say(login_obj.reason);
+    -- ngx.exit(ngx.HTTP_OK)
+    ngx.exit(ngx.HTTP_UNAUTHORIZED)
+
+  end
+
+
   if (_StrIsEmpty(args.start) or _StrIsEmpty(args.stop)) then
     ngx.status = ngx.HTTP_BAD_REQUEST
     ngx.say("Incomplete arguments")
     ngx.log(ngx.ERR, "Incomplete arguments")
     ngx.exit(ngx.HTTP_BAD_REQUEST)
-  end
-
-  if (_StrIsEmpty(ngx.var.cookie_login_token)) then
-    ngx.status = ngx.HTTP_UNAUTHORIZED
-    ngx.exit(ngx.HTTP_OK)
-  end
-
-  local login_obj = jwt:verify(ngx.shared.config:get("secret"), ngx.var.cookie_login_token)
-  if not login_obj["verified"] then
-    ngx.status = ngx.HTTP_UNAUTHORIZED
-    ngx.say(login_obj.reason);
-    ngx.exit(ngx.HTTP_OK)
   end
 
   local timestamp = tonumber(login_obj["payload"]["timestamp"])
@@ -88,8 +103,11 @@ function _M.ReadHomeTimeline()
 
   if (timestamp + ttl < ngx.time()) then
     ngx.status = ngx.HTTP_UNAUTHORIZED
-    ngx.say("Login token expired, please log in again")
-    ngx.exit(ngx.HTTP_OK)
+    -- ngx.redirect("../../index.html")
+    -- ngx.say("Login token expired, please log in again")
+    -- ngx.exit(ngx.HTTP_OK)
+    ngx.exit(ngx.HTTP_UNAUTHORIZED)
+
   else
     local client = GenericObjectPool:connection(
         HomeTimelineServiceClient, "home-timeline-service.ai4cloudops-f7f10d9.svc.cluster.local", 9090)
