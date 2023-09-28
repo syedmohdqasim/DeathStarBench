@@ -3,7 +3,7 @@ function clickEvent() {
         // console.log(document);
         var formData = new FormData(document.getElementById('media-form'));
         const Http = new XMLHttpRequest();
-        const url = 'http://' + window.location.hostname + ':8081/upload-media';
+        const url = 'http://' + window.location.hostname + '/upload-media';
         Http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var resp = JSON.parse(Http.responseText);
@@ -21,7 +21,7 @@ function clickEvent() {
 function uploadPost(media_json) {
     if (document.getElementById('post-content').value !== "") {
         const Http = new XMLHttpRequest();
-        const url = 'http://' + window.location.hostname + ':8080/api/post/compose';
+        const url = 'http://' + window.location.hostname + '/api/post/compose';
         Http.open("POST", url, true);
         var body = "post_type=0&text=" + document.getElementById('post-content').value
         Http.onreadystatechange = function () {

@@ -8,13 +8,13 @@ function showTimeline(type) {
     if (start !== "" && stop !== "") {
         var params = "start=" + start + "&stop=" + stop;
         const Http = new XMLHttpRequest();
-        // const url = 'http://' + window.location.hostname + ':8080/api/user-timeline/read';
-        const url = 'http://' + window.location.hostname + ':8080/api/' + type + '/read';
+        // const url = 'http://' + window.location.hostname + '/api/user-timeline/read';
+        const url = 'http://' + window.location.hostname + '/api/' + type + '/read';
         Http.open("GET", url + "?" + params, true);
         Http.onreadystatechange = function () {
             if (this.readyState == 2 && this.status == 401) {
                 console.log("unauthorized user login")
-                window.location.href = 'http://' + window.location.hostname + ":8080/index.html";
+                window.location.href = 'http://' + window.location.hostname + "/index.html";
                 localStorage.clear();
             }
             else if (this.readyState == 4 && this.status == 200) {
@@ -51,7 +51,7 @@ function showTimeline(type) {
                     post_times[i].innerText = getTime(post_json["timestamp"]);
                     post_creators[i].innerText = post_json["creator"]["username"];
                     for (var j = 0; j < media_json.length; j++) {
-                        post_images[i].src = "http://" + window.location.hostname + ":8081/get-media/?filename=" +
+                        post_images[i].src = "http://" + window.location.hostname + "/get-media/?filename=" +
                             media_json[j]["media_id"] + "." +
                             media_json[j]["media_type"];
                     }
@@ -84,12 +84,12 @@ function show_Mentioned_User_Timeline(mentioned_user) {
     if (start !== "" && stop !== "") {
         var params = "start=" + start + "&stop=" + stop;
         const Http = new XMLHttpRequest();
-        const url = 'http://' + window.location.hostname + ':8080/api/home-timeline/read';
+        const url = 'http://' + window.location.hostname + '/api/home-timeline/read';
         Http.open("GET", url + "?" + params, true);
         Http.onreadystatechange = function () {
             if (this.readyState == 2 && this.status == 401) {
                 console.log("unauthorized user login")
-                window.location.href = 'http://' + window.location.hostname + ":8080/index.html";
+                window.location.href = 'http://' + window.location.hostname + "/index.html";
                 localStorage.clear();
             }
             else if (this.readyState == 4 && this.status == 200) {
@@ -120,7 +120,7 @@ function show_Mentioned_User_Timeline(mentioned_user) {
                     post_times[i].innerText = getTime(post_json["timestamp"]);
                     post_creators[i].innerText = post_json["creator"]["username"];
                     for (var j = 0; j < media_json.length; j++) {
-                        post_images[i].src = "http://" + window.location.hostname + ":8081/get-media/?filename=" +
+                        post_images[i].src = "http://" + window.location.hostname + "/get-media/?filename=" +
                             media_json[j]["media_id"] + "." +
                             media_json[j]["media_type"];
                     }
@@ -171,7 +171,7 @@ function replaceMentionWithHTMLLinks(text) {
 function get_follower() {
     username = document.getElementById("username");
     const Http = new XMLHttpRequest();
-    const url = 'http://' + window.location.hostname + ':8080/api/user/get_follower';
+    const url = 'http://' + window.location.hostname + '/api/user/get_follower';
     Http.open("GET", url, true);
     Http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
