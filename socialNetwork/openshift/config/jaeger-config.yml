@@ -1,7 +1,7 @@
 disabled: false
 reporter:
   logSpans: false
-  localAgentHostPort: "172.30.108.189:6831"
+  localAgentHostPort: "jaeger-agent:6831"
 sampler:
   type: const
   param: 1
