@@ -1,7 +1,7 @@
 local _M = {}
 local k8s_suffix = os.getenv("fqdn_suffix")
-ngx.log( "fqdn suffix arguments")
-ngx.log( k8s_suffix)
+ngx.log(ngx.ERR, "fqdn suffix arguments")
+ngx.log(ngx.ERR, k8s_suffix)
 
 if (k8s_suffix == nil) then
   k8s_suffix = ""
