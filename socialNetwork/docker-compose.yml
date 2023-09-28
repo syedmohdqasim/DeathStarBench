@@ -306,7 +306,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   nginx-thrift:
-    image: yg397/media-frontend:xenial
+    image: yg397/openresty-thrift:xenial
     cpus: 2
     mem_limit: 2G
     # hostname: nginx-thrift
