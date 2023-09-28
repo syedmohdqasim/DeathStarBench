@@ -306,7 +306,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   nginx-thrift:
-    image: smqasim/nginx-thrift-webserver:latest
+    image: yg397/media-frontend:xenial
     cpus: 2
     mem_limit: 2G
     # hostname: nginx-thrift
@@ -317,12 +317,12 @@ services:
         condition: service_started
     restart: always
     volumes:
-            # - ./nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
-            # - ./nginx-web-server/pages:/usr/local/openresty/nginx/pages
-            # - ./nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+      - ./nginx-web-server/pages:/usr/local/openresty/nginx/pages
+      - ./nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
       - ./nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json
-        # - ./gen-lua:/gen-lua
-        # - ./docker/openresty-thrift/lua-thrift:/usr/local/openresty/lualib/thrift
+      - ./gen-lua:/gen-lua
+      - ./docker/openresty-thrift/lua-thrift:/usr/local/openresty/lualib/thrift
 
   media-frontend:
     image: yg397/media-frontend:xenial
