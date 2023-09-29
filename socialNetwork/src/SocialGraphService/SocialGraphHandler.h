@@ -541,6 +541,8 @@ void SocialGraphHandler::GetFollowers(
                                            redis_zset.end());
         }
       } catch (const Error &err) {
+        LOG(error) << std::to_string(user_id);
+        LOG(error) << key;
         LOG(error) << err.what();
         throw err;
       }
