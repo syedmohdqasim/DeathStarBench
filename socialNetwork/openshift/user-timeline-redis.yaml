@@ -38,6 +38,12 @@ spec:
       containers:
       - name: user-timeline-redis
         image: redis
+        volumeMounts:
+        - name: ephemeral-storage
+          mountPath: /data
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
+      volumes:
+        - name: ephemeral-storage
+          emptyDir: { }
