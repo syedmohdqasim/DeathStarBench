@@ -22,15 +22,14 @@ spec:
     spec:
       containers:
       - name: ubuntu-client
-        image: ubuntu
-        command:  ["/bin/sh", "-c"]
-        args:
-          - apt-get -y update &&
-            apt-get -y upgrade &&
-            apt-get -y install dnsutils git vim python3 python3-aiohttp libssl-dev libz-dev luarocks iputils-ping lynx build-essential gcc bash curl &&
-            luarocks install luasocket &&
-            sleep 365d
-        imagePullPolicy: Always
+        image: smqasim/ubuntu-client:latest
+        command: ["/bin/sleep", "3650d"]
+        imagePullPolicy: IfNotPresent
+#          - apt-get -y update &&
+#            apt-get -y upgrade &&
+#            apt-get -y install dnsutils git vim python3 python3-aiohttp libssl-dev libz-dev luarocks iputils-ping lynx build-essential gcc bash curl &&
+#            luarocks install luasocket &&
+#            sleep 365d
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
