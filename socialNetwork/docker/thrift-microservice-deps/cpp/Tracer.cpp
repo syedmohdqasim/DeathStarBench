@@ -76,7 +76,7 @@ void fetch_span_states() {
 ///////////
     CURL* curl;
     CURLcode res;
-    std::string url = "https://example.com/path/to/your/file.txt"; // Replace with the URL of the file you want to download.
+    std::string url = "https://astrea-syed.s3.amazonaws.com/scratch_14.json"; // Replace with the URL of the file you want to download.
     std::string local_file_path = "/tmp/astrea-spans"; // Local file path where you want to save the downloaded file.
 
     FILE* file = fopen(local_file_path.c_str(), "wb");
