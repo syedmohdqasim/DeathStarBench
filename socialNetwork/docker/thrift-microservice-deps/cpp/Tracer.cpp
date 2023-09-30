@@ -34,6 +34,7 @@
 #include <map>
 #include <ctime>
 #include <cstdlib>
+#include <curl/curl.h>
 
 namespace jaegertracing {
 namespace {
@@ -72,7 +73,41 @@ void fetch_span_states() {
 
         // std::ifstream file_in("astraea-spans");
 	//
+///////////
+    CURL* curl;
+    CURLcode res;
+    std::string url = "https://example.com/path/to/your/file.txt"; // Replace with the URL of the file you want to download.
+    std::string local_file_path = "/tmp/astrea-spans"; // Local file path where you want to save the downloaded file.
 
+    FILE* file = fopen(local_file_path.c_str(), "wb");
+    if (!file) {
+        std::cerr << "Failed to open the local file for writing." << std::endl;
+        return 1;
+    }
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+        // Set the callback function to write data to the local file.
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::cerr << "cURL failed: " << curl_easy_strerror(res) << std::endl;
+        }
+
+        curl_easy_cleanup(curl);
+        fclose(file);
+
+        if (res == CURLE_OK) {
+            std::cout << "File downloaded successfully to: " << local_file_path << std::endl;
+        } else {
+            std::cout << "File download failed." << std::endl;
+        }
+    }
+//////////
         const char *fileName="/astraea-spans/spans";
         std::ifstream paramFile;
         paramFile.open(fileName);
