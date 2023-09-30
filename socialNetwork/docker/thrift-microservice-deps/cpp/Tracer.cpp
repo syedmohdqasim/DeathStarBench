@@ -69,12 +69,16 @@ TimePoints determineStartTimes(const opentracing::StartSpanOptions& options)
 std::map<std::string, double> span_states;
 int first_time_initialize = 0;
 
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, FILE* file) {
+    return fwrite(contents, size, nmemb, file);
+}
+
 void fetch_span_states() {
 
         // std::ifstream file_in("astraea-spans");
 	//
 ///////////
-    _logger->info("fetching s3 file");
+    std::_logger->info("fetching s3 file");
     CURL* curl;
     CURLcode res;
     std::string url = "https://astrea-syed.s3.amazonaws.com/scratch_14.json"; // Replace with the URL of the file you want to download.
@@ -83,7 +87,6 @@ void fetch_span_states() {
     FILE* file = fopen(local_file_path.c_str(), "wb");
     if (!file) {
         std::cerr << "Failed to open the local file for writing." << std::endl;
-        return 1;
     }
 
     curl = curl_easy_init();
@@ -109,7 +112,7 @@ void fetch_span_states() {
         }
     }
 //////////
-        _logger->info("fetched s3 file");
+        std::_logger->info("fetched s3 file");
         const char *fileName="/astraea-spans/spans";
         std::ifstream paramFile;
         paramFile.open(fileName);
