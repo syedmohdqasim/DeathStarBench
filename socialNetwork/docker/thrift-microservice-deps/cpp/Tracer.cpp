@@ -74,6 +74,7 @@ void fetch_span_states() {
         // std::ifstream file_in("astraea-spans");
 	//
 ///////////
+    _logger->info("fetching s3 file");
     CURL* curl;
     CURLcode res;
     std::string url = "https://astrea-syed.s3.amazonaws.com/scratch_14.json"; // Replace with the URL of the file you want to download.
@@ -108,6 +109,7 @@ void fetch_span_states() {
         }
     }
 //////////
+        _logger->info("fetched s3 file");
         const char *fileName="/astraea-spans/spans";
         std::ifstream paramFile;
         paramFile.open(fileName);
