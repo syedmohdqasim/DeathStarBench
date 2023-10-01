@@ -20,7 +20,7 @@ target_link_libraries(
     Boost::log
     Boost::log_setup
     jaegertracing
-    lcurl
+    curl
 )
 
 install(TARGETS UniqueIdService DESTINATION ./)

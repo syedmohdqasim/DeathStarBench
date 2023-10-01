@@ -27,7 +27,7 @@ target_link_libraries(
     Boost::log_setup
     jaegertracing
     OpenSSL::SSL
-    lcurl
+    curl
 )
 
 install(TARGETS UserService DESTINATION ./)

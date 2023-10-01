@@ -27,7 +27,7 @@ target_link_libraries(
     ${LIBEVENT_LIBRARIES}
     /usr/local/lib/libcpp_redis.a
     /usr/local/lib/libtacopie.a
-    lcurl
+    curl
 )
 
 install(TARGETS WriteHomeTimelineService DESTINATION ./)
