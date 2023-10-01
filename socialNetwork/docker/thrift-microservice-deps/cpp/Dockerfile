@@ -13,7 +13,7 @@ ARG LIB_SIMPLEAMQPCLIENT_VERSION=2.4.0
 ARG LIB_HIREDIS_VERSION=1.0.0
 ARG LIB_REDIS_PLUS_PLUS_VERSION=1.2.3
 
-ARG BUILD_DEPS="ca-certificates g++ cmake wget git libmemcached-dev automake bison flex libboost-all-dev libcurl4-openssl-dev libevent-dev libssl-dev libtool make pkg-config librabbitmq-dev python3-dev python3-pip python3-setuptools python3-wheel"
+ARG BUILD_DEPS="ca-certificates g++ cmake wget git libmemcached-dev automake bison flex libboost-all-dev libevent-dev libssl-dev libtool make pkg-config librabbitmq-dev python3-dev python3-pip python3-setuptools python3-wheel"
 
 ADD Tracer.cpp /tmp
 
@@ -69,6 +69,17 @@ RUN apt-get update \
   && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fPIC" -DBUILD_TESTING=0 .. \
   && make -j$(nproc) \
   && make install \
+  && cd /tmp \
+  #install libcurl  \
+  && wget https://curl.se/download/curl-7.79.1.tar.gz  \
+  && tar -xzvf curl-7.79.1.tar.gz  \
+  && cd curl-7.79.1  \
+  && ./configure --disable-shared --enable-static  \
+  && make  \
+  && make install  \
+  && cd ..  \
+  && rm -rf curl-7.79.1  \
+  && rm curl-7.79.1.tar.gz \
   && cd /tmp \
   # Install jaeger-client-cpp
   && wget -O jaeger-client-cpp-${LIB_JAEGER_VERSION}.tar.gz https://github.com/jaegertracing/jaeger-client-cpp/archive/v${LIB_JAEGER_VERSION}.tar.gz \
