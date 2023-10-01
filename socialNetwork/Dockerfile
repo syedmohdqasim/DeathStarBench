@@ -22,7 +22,7 @@ RUN apt-get update && \
         libsasl2-2 \
         libmemcached11 \
         libmemcachedutil2 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* 
 
 RUN apt-get update
 RUN apt-get -y install libcurl4-openssl-dev
