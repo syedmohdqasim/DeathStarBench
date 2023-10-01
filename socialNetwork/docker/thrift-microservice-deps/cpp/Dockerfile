@@ -71,15 +71,15 @@ RUN apt-get update \
   && make install \
   && cd /tmp \
   #install libcurl  \
-  && wget https://curl.se/download/curl-7.79.1.tar.gz  \
-  && tar -xzvf curl-7.79.1.tar.gz  \
-  && cd curl-7.79.1  \
+  && wget https://curl.se/download/curl-8.3.0.tar.gz  \
+  && tar -xzvf curl-8.3.0.tar.gz  \
+  && cd curl-8.3.0  \
   && ./configure --disable-shared --enable-static  \
   && make  \
   && make install  \
   && cd ..  \
-  && rm -rf curl-7.79.1  \
-  && rm curl-7.79.1.tar.gz \
+  && rm -rf curl-8.3.0  \
+  && rm curl-8.3.0.tar.gz \
   && cd /tmp \
   # Install jaeger-client-cpp
   && wget -O jaeger-client-cpp-${LIB_JAEGER_VERSION}.tar.gz https://github.com/jaegertracing/jaeger-client-cpp/archive/v${LIB_JAEGER_VERSION}.tar.gz \
