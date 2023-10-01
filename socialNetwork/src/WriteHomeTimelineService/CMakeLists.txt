@@ -29,5 +29,6 @@ target_link_libraries(
     /usr/local/lib/libtacopie.a
     curl
 )
-
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
 install(TARGETS WriteHomeTimelineService DESTINATION ./)
