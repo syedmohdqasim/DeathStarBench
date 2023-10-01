@@ -13,6 +13,9 @@ foreach(prefix ${LibEvent_EXTRA_PREFIXES})
   list(APPEND LibEvent_LIBRARIES_PATHS "${prefix}/lib")
 endforeach()
 
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+
 # Looking for "event.h" will find the Platform SDK include dir on windows
 # so we also look for a peer header like evhttp.h to get the right path
 find_path(LIBEVENT_INCLUDE_DIRS evhttp.h event.h PATHS ${LibEvent_INCLUDE_PATHS})

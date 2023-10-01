@@ -78,8 +78,8 @@ RUN apt-get update \
   && echo "mertiko tracer moved" \
   && mkdir -p cmake-build \
   && cd cmake-build \
-  && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fPIC" -DHUNTER_ENABLED=0 -DBUILD_TESTING=0 -DJAEGERTRACING_WITH_YAML_CPP=1 -DJAEGERTRACING_BUILD_EXAMPLES=0 .. \
-  && make -j$(nproc) -static -lcurl \
+  && cmake -DCMAKE_BUILD_TYPE=Release  DBUILD_SHARED_LIBS=0 DCMAKE_EXE_LINKER_FLAGS="${CMAKE_EXE_LINKER_FLAGS} -static" -DCMAKE_CXX_FLAGS="-fPIC" -DHUNTER_ENABLED=0 -DBUILD_TESTING=0 -DJAEGERTRACING_WITH_YAML_CPP=1 -DJAEGERTRACING_BUILD_EXAMPLES=0 .. \
+  && make -j$(nproc)  \
   && make install \
   && cd /tmp \
   # Install jwt

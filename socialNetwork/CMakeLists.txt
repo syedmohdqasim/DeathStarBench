@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(social_network_microservices)
-
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-O3")
