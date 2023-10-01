@@ -1,5 +1,6 @@
 FROM merttoslali/thrift-microservice-deps:xenial AS builder
 COPY ./ /social-network-microservices
+RUN apt-get -y install libcurl4-openssl-dev
 RUN cd /social-network-microservices \
     && mkdir -p build \
     && cd build \

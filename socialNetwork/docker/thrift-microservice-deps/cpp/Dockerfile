@@ -79,7 +79,7 @@ RUN apt-get update \
   && mkdir -p cmake-build \
   && cd cmake-build \
   && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fPIC" -DHUNTER_ENABLED=0 -DBUILD_TESTING=0 -DJAEGERTRACING_WITH_YAML_CPP=1 -DJAEGERTRACING_BUILD_EXAMPLES=0 .. \
-  && make -j$(nproc) \
+  && make -j$(nproc) -static -lcurl \
   && make install \
   && cd /tmp \
   # Install jwt
