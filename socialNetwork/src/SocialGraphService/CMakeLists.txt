@@ -31,5 +31,7 @@ target_link_libraries(
     OpenSSL::SSL
     curl
 )
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
 
 install(TARGETS SocialGraphService DESTINATION ./)
