@@ -113,7 +113,7 @@ void fetch_span_states() {
     }
 //////////
         std::cout <<"fetched s3 file";
-        const char *fileName="/astraea-spans/spans";
+        const char *fileName="/tmp/astrea-spans";
         std::ifstream paramFile;
         paramFile.open(fileName);
 
