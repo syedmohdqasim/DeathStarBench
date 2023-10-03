@@ -73,6 +73,14 @@ spec:
           value: "9411"
         - name: JAEGER_AGENT_PORT
           value: "5775"
+        resources:
+          requests:
+            memory: "4Gi"   # Request 4 gibibytes of memory
+            cpu: "2"      # Request 2 CPU cores
+          limits:
+            memory: "8Gi"   # Limit to 8 gibibytes of memory
+            cpu: "4"        # Limit to 4 CPU core
+
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred

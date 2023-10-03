@@ -10,5 +10,7 @@ WORKDIR /app
 RUN git clone https://github.com/syedmohdqasim/DeathStarBench.git
 #WORKDIR  /app/DeathStarBench/socialNetwork/openshift/wrk2
 #RUN ls
+RUN mkdir -p /astrea
+RUN chmod -R 777 /astrea
 USER john
 CMD /bin/bash
