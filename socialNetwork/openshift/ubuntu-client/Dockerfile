@@ -12,13 +12,16 @@ RUN git clone https://github.com/syedmohdqasim/DeathStarBench.git
 #RUN ls
 RUN mkdir -p /astrea
 RUN chmod -R 777 /astrea
-RUN apt-get install python3.10-venv
+RUN apt-get -y install python3.10-venv  python3-pip
 RUN python3 -m venv /venv
 WORKDIR /astrea
 COPY requirements.txt .
-RUN /bin/bash -c "source /venv/bin/activate"
+ENV PATH="/venv/bin:$PATH"
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+WORKDIR /app/DeathStarBench/socialNetwork/wrk2
+RUN make
+WORKDIR /astrea
 
 USER john
 CMD /bin/bash
