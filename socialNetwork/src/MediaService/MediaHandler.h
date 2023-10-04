@@ -68,7 +68,6 @@ void MediaHandler::ComposeMedia(
     std::default_random_engine generator(seed);
     std::normal_distribution<> d{100,30};
     int x = std::round(d(generator));
-    cout<<x;
     LOG(info) << "*Mert compose_media_server sleep*";
     LOG(info) << x;
     std::this_thread::sleep_for(std::chrono::microseconds(x));
