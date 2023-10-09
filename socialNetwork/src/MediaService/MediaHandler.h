@@ -66,7 +66,7 @@ void MediaHandler::ComposeMedia(
     // introduce random sleep
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::default_random_engine generator(seed);
-    std::normal_distribution<> d{100,30};
+    std::normal_distribution<> d{10000,30};
     int x = std::round(d(generator));
     LOG(info) << "*Mert compose_media_server sleep*";
     LOG(info) << x;
