@@ -64,13 +64,13 @@ void MediaHandler::ComposeMedia(
     //     }
     // }
     // introduce random sleep
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator(seed);
-    std::normal_distribution<> d{10000,3000};
-    int x = std::round(d(generator));
-    LOG(info) << "*Mert compose_media_server sleep*";
-    LOG(info) << x;
-    std::this_thread::sleep_for(std::chrono::microseconds(x));
+//    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+//    std::default_random_engine generator(seed);
+//    std::normal_distribution<> d{10000,3000};
+//    int x = std::round(d(generator));
+//    LOG(info) << "*Mert compose_media_server sleep*";
+//    LOG(info) << x;
+//    std::this_thread::sleep_for(std::chrono::microseconds(x));
 
   if (media_types.size() != media_ids.size()) {
     ServiceException se;
