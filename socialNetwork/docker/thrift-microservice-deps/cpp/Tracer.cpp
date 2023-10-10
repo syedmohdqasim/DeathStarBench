@@ -81,7 +81,7 @@ void fetch_span_states() {
     std::cout <<"fetching s3 file";
     CURL* curl;
     CURLcode res;
-    std::string url = "https://astrea-syed.s3.amazonaws.com/scratch_14.json"; // Replace with the URL of the file you want to download.
+    std::string url = "https://astrea-syed.s3.amazonaws.com/astraea-spans/spans"; // Replace with the URL of the file you want to download.
     std::string local_file_path = "/tmp/astrea-spans"; // Local file path where you want to save the downloaded file.
 
     FILE* file = fopen(local_file_path.c_str(), "wb");
@@ -127,12 +127,53 @@ void fetch_span_states() {
         paramFile.close();
 }
 
+void fetch_sleep_file() {
+
+        // std::ifstream file_in("astraea-spans");
+	//
+///////////
+    std::cout <<"fetching s3 sleep file";
+    CURL* curl;
+    CURLcode res;
+    std::string url = "https://astrea-syed.s3.amazonaws.com/astraea-spans/sleeps"; // Replace with the URL of the file you want to download.
+    std::string local_file_path = "/tmp/sleeps"; // Local file path where you want to save the downloaded file.
+
+    FILE* file = fopen(local_file_path.c_str(), "wb");
+    if (!file) {
+        std::cerr << "Failed to open the local file for writing." << std::endl;
+    }
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+        // Set the callback function to write data to the local file.
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::cerr << "cURL failed: " << curl_easy_strerror(res) << std::endl;
+        }
+
+        curl_easy_cleanup(curl);
+        fclose(file);
+
+        if (res == CURLE_OK) {
+            std::cout << "File downloaded successfully to: " << local_file_path << std::endl;
+        } else {
+            std::cout << "File download failed." << std::endl;
+        }
+    }
+
+}
 void launch_astraea_daemon()
 {
 
                 for(unsigned j = 0; j < INT_MAX; ++j)
                 {
                         fetch_span_states();
+                        fetch_sleep_file();
                         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
                 }
@@ -275,7 +316,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         // tsl: sleep
 //         _logger->info("----Mertiko fixed sleep checking file");
-        std::ifstream fin2("/astraea-spans/sleeps");
+        std::ifstream fin2("/tmp/sleeps");
         std::string sleep;
 
         while (getline(fin2,sleep)) {
