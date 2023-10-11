@@ -73,6 +73,14 @@ spec:
           value: "9411"
         - name: JAEGER_AGENT_PORT
           value: "5775"
+        - name: SPAN_STORAGE_TYPE
+          value: badger
+        - name: BADGER_EPHEMERAL
+          value: "false"
+        - name: BADGER_DIRECTORY_VALUE
+          value: "/tmp/data"
+        - name: BADGER_DIRECTORY_KEY
+          value: "/tmp/key"
         resources:
           requests:
             memory: "8Gi"   # Request 4 gibibytes of memory
