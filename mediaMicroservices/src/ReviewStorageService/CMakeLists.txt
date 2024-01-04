@@ -23,6 +23,10 @@ target_link_libraries(
     Boost::log
     Boost::log_setup
     jaegertracing
+    OpenSSL::SSL
+    /usr/local/lib/libjaegertracing.so
+    /usr/local/lib/libSimpleAmqpClient.so
+    curl
 )
 
 install(TARGETS ReviewStorageService DESTINATION ./)
