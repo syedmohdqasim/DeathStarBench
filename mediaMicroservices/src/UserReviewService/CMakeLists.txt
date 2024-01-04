@@ -25,6 +25,10 @@ target_link_libraries(
     jaegertracing
     /usr/local/lib/libcpp_redis.a
     /usr/local/lib/libtacopie.a
+    OpenSSL::SSL
+    /usr/local/lib/libjaegertracing.so
+    /usr/local/lib/libSimpleAmqpClient.so
+    curl
 )
 
 install(TARGETS UserReviewService DESTINATION ./)
