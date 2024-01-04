@@ -1,4 +1,4 @@
-FROM mert/thrift-microservice-deps:xenial
+FROM smqasim/thrift-microservice-deps:xenial
 
 COPY ./ /media-microservices
 RUN cd /media-microservices \
