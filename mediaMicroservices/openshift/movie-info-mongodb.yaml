@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: movie-info-mongodb
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
   labels:
     death-star-project: media-microsvc
     app: movie-info-mongodb
@@ -18,7 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: movie-info-mongodb
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
   labels:
     death-star-project: media-microsvc
     app: movie-info-mongodb

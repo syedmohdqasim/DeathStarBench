@@ -5,7 +5,7 @@ kind: DestinationRule
 metadata:
   name: ${i}
 spec:
-  host: ${i}.media-microsvc.svc.cluster.local
+  host: ${i}.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: ${i}
     labels:

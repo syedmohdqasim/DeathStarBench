@@ -34,6 +34,7 @@
 #include <map>
 #include <ctime>
 #include <cstdlib>
+#include <curl/curl.h>
 
 namespace jaegertracing {
 namespace {
@@ -41,6 +42,7 @@ namespace {
 using SystemClock = Tracer::SystemClock;
 using SteadyClock = Tracer::SteadyClock;
 using TimePoints = std::tuple<SystemClock::time_point, SteadyClock::time_point>;
+
 
 TimePoints determineStartTimes(const opentracing::StartSpanOptions& options)
 {
@@ -63,16 +65,55 @@ TimePoints determineStartTimes(const opentracing::StartSpanOptions& options)
 }
 
 }  // anonymous namespace
-	
+
 std::map<std::string, double> span_states;
 int first_time_initialize = 0;
+
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, FILE* file) {
+    return fwrite(contents, size, nmemb, file);
+}
 
 void fetch_span_states() {
 
         // std::ifstream file_in("astraea-spans");
 	//
+///////////
+    std::cout <<"fetching s3 file";
+    CURL* curl;
+    CURLcode res;
+    std::string url = "https://stack.nerc.mghpcc.org:13808/swift/v1/AUTH_7d29ffa4b66b410ba9280e81069f2799/astraea/ds-media-service/spans"; // Replace with the URL of the file you want to download.
+    std::string local_file_path = "/tmp/astrea-spans"; // Local file path where you want to save the downloaded file.
 
-        const char *fileName="/astraea-spans/spans";
+    FILE* file = fopen(local_file_path.c_str(), "wb");
+    if (!file) {
+        std::cerr << "Failed to open the local file for writing." << std::endl;
+    }
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+        // Set the callback function to write data to the local file.
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::cerr << "cURL failed: " << curl_easy_strerror(res) << std::endl;
+        }
+
+        curl_easy_cleanup(curl);
+        fclose(file);
+
+        if (res == CURLE_OK) {
+            std::cout << "File downloaded successfully to: " << local_file_path << std::endl;
+        } else {
+            std::cout << "File download failed." << std::endl;
+        }
+    }
+//////////
+        std::cout <<"fetched s3 file";
+        const char *fileName="/tmp/astrea-spans";
         std::ifstream paramFile;
         paramFile.open(fileName);
 
@@ -86,17 +127,59 @@ void fetch_span_states() {
         paramFile.close();
 }
 
+void fetch_sleep_file() {
+
+        // std::ifstream file_in("astraea-spans");
+	//
+///////////
+    std::cout <<"fetching s3 sleep file";
+    CURL* curl;
+    CURLcode res;
+    std::string url = "https://stack.nerc.mghpcc.org:13808/swift/v1/AUTH_7d29ffa4b66b410ba9280e81069f2799/astraea/ds-media-service/sleep"; // Replace with the URL of the file you want to download.
+    std::string local_file_path = "/tmp/sleeps"; // Local file path where you want to save the downloaded file.
+
+    FILE* file = fopen(local_file_path.c_str(), "wb");
+    if (!file) {
+        std::cerr << "Failed to open the local file for writing." << std::endl;
+    }
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+        // Set the callback function to write data to the local file.
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::cerr << "cURL failed: " << curl_easy_strerror(res) << std::endl;
+        }
+
+        curl_easy_cleanup(curl);
+        fclose(file);
+
+        if (res == CURLE_OK) {
+            std::cout << "File downloaded successfully to: " << local_file_path << std::endl;
+        } else {
+            std::cout << "File download failed." << std::endl;
+        }
+    }
+
+}
 void launch_astraea_daemon()
 {
 
                 for(unsigned j = 0; j < INT_MAX; ++j)
                 {
                         fetch_span_states();
+                        fetch_sleep_file();
                         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
                 }
 
 }
+
 
 using StrMap = SpanContext::StrMap;
 
@@ -112,8 +195,9 @@ Tracer::StartSpanWithOptions(string_view operationName,
         // Tsl: Astraea logic embedded here
         bool isDisabled = false;
 
-        _logger->info("-----Mertiko info checking file");
-        _logger->info(operationName);
+
+//         _logger->info("-----Mertiko info checking file");
+//         _logger->info(operationName);
 
 	
         if (first_time_initialize == 0){
@@ -127,16 +211,20 @@ Tracer::StartSpanWithOptions(string_view operationName,
         }
 
         if (span_states.count(operationName) > 0){
-		_logger->info("Yes operation name is given");
-                std::cout << "mymap is " << span_states[operationName] << '\n';
+// 		_logger->info("Yes operation name is given");
+//                 std::cout << "mymap is " << span_states[operationName] << '\n';
                 double span_sampling_probability = span_states[operationName];
                 double dice = (double) rand()/RAND_MAX * 100;
-                _logger->info(std::to_string(dice));
-		_logger->info(std::to_string(span_sampling_probability));
+//                 _logger->info(std::to_string(dice));
+// 		_logger->info(std::to_string(span_sampling_probability));
                 if ( dice > span_sampling_probability){
                         isDisabled = true;
                 }
         }
+
+
+        //  _logger->info("-----Mertiko info checking file");
+        //  _logger->info(operationName);
 
         // std::ifstream fin("/astraea-spans/spans");
         // std::string s;
@@ -150,25 +238,9 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         //     }
         // }
-        
-        // // tsl: sleep
-        // _logger->info("----Mertiko fixed sleep checking file");
-        // std::ifstream fin2("/astraea-spans/sleeps");
-        // std::string sleep;
 
-        // while (getline(fin2,sleep)) {
-        //     if (sleep.find(operationName) != std::string::npos) {
-                
-        //         unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-        //         std::default_random_engine generator(seed);
-                
-        //         std::normal_distribution<> d{100,30};
-        //         int x = std::round(d(generator));
-        //          _logger->info("+++Mertiko sleep microseconds");
-        //          _logger->info(std::to_string(x));
-        //         std::this_thread::sleep_for(std::chrono::microseconds(x));
-        //     }
-        // }
+
+
 
         const auto result = analyzeReferences(options.references);
         const auto* parent = result._parent;
@@ -217,9 +289,9 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
             //utils::ErrorUtil::logError(*_logger, "*-*INFO-mert2:");
             // _logger->info("Mertiko info2; spanId: " +  spanID + ", parentId: " + parentID + ", parentparent: "+ parentparentID);
-            _logger->info("---Mertiko info");
+//             _logger->info("---Mertiko info");
             if (isDisabled){
-                 _logger->info("+++Mertiko disabled");
+//                  _logger->info("+++Mertiko disabled");
                 ctx = SpanContext(traceID, parentID, parentparentID, 0, StrMap());
             }
             else{
@@ -231,7 +303,7 @@ Tracer::StartSpanWithOptions(string_view operationName,
 
         if (parent && !parent->baggage().empty()) {
             ctx = ctx.withBaggage(parent->baggage());
-             _logger->info("+++Mertiko baggage");
+//              _logger->info("+++Mertiko baggage");
             // std::cout << "*-*INFO-mert children with baggage: " << operationName <<'\n';
         }
 
@@ -239,11 +311,12 @@ Tracer::StartSpanWithOptions(string_view operationName,
         SteadyClock::time_point startTimeSteady;
         std::tie(startTimeSystem, startTimeSteady) =
             determineStartTimes(options);
-	    
-	    
+
+
+
         // tsl: sleep
-        _logger->info("----Mertiko fixed sleep checking file");
-        std::ifstream fin2("/astraea-spans/sleeps");
+//         _logger->info("----Mertiko fixed sleep checking file");
+        std::ifstream fin2("/tmp/sleeps");
         std::string sleep;
 
         while (getline(fin2,sleep)) {
@@ -252,17 +325,20 @@ Tracer::StartSpanWithOptions(string_view operationName,
                 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
                 std::default_random_engine generator(seed);
                 
-                std::normal_distribution<> d{1000,500};
+                std::normal_distribution<> d{span_states["mean"],span_states["sd"]};
                 int x = std::round(d(generator));
                 if ( x < 0 )
                 {
                     x = 0;
                 }
+		 _logger->info(operationName);
                  _logger->info("+++Mertiko sleep microseconds");
                  _logger->info(std::to_string(x));
+
                 std::this_thread::sleep_for(std::chrono::microseconds(x));
             }
         }
+
         return startSpanInternal(ctx,
                                  operationName,
                                  startTimeSystem,

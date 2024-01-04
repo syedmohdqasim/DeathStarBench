@@ -1,6 +1,6 @@
 #!/bin/bash
 
-N=media-microsvc
+N=ai4cloudops-f7f10d9
 
 cd $(dirname $0)/../..
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NS=ai4cloudops-f7f10d9
+NS=ai4cloudops-11855c
 
 echo "Are you really sure you want to erase the ${NS} world? (y/n)"
 read a

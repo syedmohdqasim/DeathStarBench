@@ -31,5 +31,4 @@ spec:
 #            luarocks install luasocket &&
 #            sleep 365d
       restartPolicy: Always
-      imagePullSecrets:
-        - name: regcred
+

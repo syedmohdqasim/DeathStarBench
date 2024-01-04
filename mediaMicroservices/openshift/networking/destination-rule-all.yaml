@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: cast-info-memcached
 spec:
-  host: cast-info-memcached.media-microsvc.svc.cluster.local
+  host: cast-info-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: cast-info-memcached
     labels:
@@ -14,7 +14,7 @@ kind: DestinationRule
 metadata:
   name: cast-info-mongodb
 spec:
-  host: cast-info-mongodb.media-microsvc.svc.cluster.local
+  host: cast-info-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: cast-info-mongodb
     labels:
@@ -25,7 +25,7 @@ kind: DestinationRule
 metadata:
   name: cast-info-service
 spec:
-  host: cast-info-service.media-microsvc.svc.cluster.local
+  host: cast-info-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: cast-info-service
     labels:
@@ -36,7 +36,7 @@ kind: DestinationRule
 metadata:
   name: compose-review-memcached
 spec:
-  host: compose-review-memcached.media-microsvc.svc.cluster.local
+  host: compose-review-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: compose-review-memcached
     labels:
@@ -47,7 +47,7 @@ kind: DestinationRule
 metadata:
   name: compose-review-service
 spec:
-  host: compose-review-service.media-microsvc.svc.cluster.local
+  host: compose-review-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: compose-review-service
     labels:
@@ -58,7 +58,7 @@ kind: DestinationRule
 metadata:
   name: jaeger
 spec:
-  host: jaeger.media-microsvc.svc.cluster.local
+  host: jaeger.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: jaeger
     labels:
@@ -69,7 +69,7 @@ kind: DestinationRule
 metadata:
   name: movie-id-memcached
 spec:
-  host: movie-id-memcached.media-microsvc.svc.cluster.local
+  host: movie-id-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-id-memcached
     labels:
@@ -80,7 +80,7 @@ kind: DestinationRule
 metadata:
   name: movie-id-mongodb
 spec:
-  host: movie-id-mongodb.media-microsvc.svc.cluster.local
+  host: movie-id-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-id-mongodb
     labels:
@@ -91,7 +91,7 @@ kind: DestinationRule
 metadata:
   name: movie-id-service
 spec:
-  host: movie-id-service.media-microsvc.svc.cluster.local
+  host: movie-id-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-id-service
     labels:

@@ -2,7 +2,7 @@
 
 cd $(dirname $0)/..
 
-NS="media-microsvc"
+NS="ai4cloudops-f7f10d9"
 FOLDER="networking"
 FILE="destination-rule-all.yaml"
 

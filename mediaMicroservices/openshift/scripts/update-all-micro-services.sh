@@ -2,7 +2,7 @@
 
 cd $(dirname $0)/..
 
-NS='media-microsvc'
+NS="ai4cloudops-f7f10d9"
 
 for service in *service.yaml
 do

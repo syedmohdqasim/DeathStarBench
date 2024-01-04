@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rating-service
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
   labels:
     death-star-project: media-microsvc
     app: rating-service
@@ -18,7 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rating-service
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
   labels:
     death-star-project: media-microsvc
     app: rating-service
@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: rating-service
-        image: yg397/media-microservices
+        image: mert/media-microservices:latest
         command: ["RatingService"]
       restartPolicy: Always

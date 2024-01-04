@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: movie-review-service
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
   labels:
     death-star-project: media-microsvc
     app: movie-review-service
@@ -18,7 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: movie-review-service
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
   labels:
     death-star-project: media-microsvc
     app: movie-review-service
@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: movie-review-service
-        image: yg397/media-microservices
+        image: mert/media-microservices:latest
         command: ["MovieReviewService"]
       restartPolicy: Always

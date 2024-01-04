@@ -6,7 +6,7 @@ metadata:
   labels:
     death-star-project: media-microsvc
     app: mms-client
-  namespace: media-microsvc
+  namespace: ai4cloudops-f7f10d9
 spec:
   replicas: 1
   selector:

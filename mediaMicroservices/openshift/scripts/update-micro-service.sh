@@ -2,14 +2,14 @@
 
 cd $(dirname $0)/..
 
-NAMESPACE='media-microsvc'
+NS="ai4cloudops-f7f10d9"
 
 function usage()
 {
     echo    "Script to generate destination rule of all services from a given namespace"
     echo    ""
     echo -e "\t-h --help"
-    echo -e "\t--namespace='media-microsvc' (the default namespace is 'media-microsvc')"
+    echo -e "\t--namespace='ai4cloudops-f7f10d9' (the default namespace is 'ai4cloudops-f7f10d9')"
     echo -e "\t--micro-service='path to micro-service yaml file'"
     echo -e "\tPlease, do not include space between the parameter and value"
     echo    ""

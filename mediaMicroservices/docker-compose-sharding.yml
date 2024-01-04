@@ -55,7 +55,7 @@ services:
   #    entrypoint: RatingService
 
   user-service:
-    image: yg397/media-microservices
+    image: mert/media-microservices:latest
     hostname: user-service
     ports:
       - 10005:9090
