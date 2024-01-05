@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: review-storage-service
-        image: mert/media-microservices:latest
+        image: smqasim/media-microservices:latest
         command: ["ReviewStorageService"]
       restartPolicy: Always

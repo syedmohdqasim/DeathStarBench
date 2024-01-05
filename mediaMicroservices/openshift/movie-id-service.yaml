@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: movie-id-service
-        image: mert/media-microservices:latest
+        image: smqasim/media-microservices:latest
         command: ["MovieIdService"]
       restartPolicy: Always

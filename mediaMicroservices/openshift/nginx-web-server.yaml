@@ -10,7 +10,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 8080
+  - port: 8180
   selector:
     death-star-project: media-microsvc
     app: nginx-web-server

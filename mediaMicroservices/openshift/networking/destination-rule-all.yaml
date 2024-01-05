@@ -102,7 +102,7 @@ kind: DestinationRule
 metadata:
   name: movie-info-memcached
 spec:
-  host: movie-info-memcached.media-microsvc.svc.cluster.local
+  host: movie-info-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-info-memcached
     labels:
@@ -113,7 +113,7 @@ kind: DestinationRule
 metadata:
   name: movie-info-mongodb
 spec:
-  host: movie-info-mongodb.media-microsvc.svc.cluster.local
+  host: movie-info-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-info-mongodb
     labels:
@@ -124,7 +124,7 @@ kind: DestinationRule
 metadata:
   name: movie-info-service
 spec:
-  host: movie-info-service.media-microsvc.svc.cluster.local
+  host: movie-info-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-info-service
     labels:
@@ -135,7 +135,7 @@ kind: DestinationRule
 metadata:
   name: movie-review-mongodb
 spec:
-  host: movie-review-mongodb.media-microsvc.svc.cluster.local
+  host: movie-review-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-review-mongodb
     labels:
@@ -146,7 +146,7 @@ kind: DestinationRule
 metadata:
   name: movie-review-redis
 spec:
-  host: movie-review-redis.media-microsvc.svc.cluster.local
+  host: movie-review-redis.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-review-redis
     labels:
@@ -157,7 +157,7 @@ kind: DestinationRule
 metadata:
   name: movie-review-service
 spec:
-  host: movie-review-service.media-microsvc.svc.cluster.local
+  host: movie-review-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: movie-review-service
     labels:
@@ -168,7 +168,7 @@ kind: DestinationRule
 metadata:
   name: nginx-web-server
 spec:
-  host: nginx-web-server.media-microsvc.svc.cluster.local
+  host: nginx-web-server.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: nginx-web-server
     labels:
@@ -179,7 +179,7 @@ kind: DestinationRule
 metadata:
   name: plot-memcached
 spec:
-  host: plot-memcached.media-microsvc.svc.cluster.local
+  host: plot-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: plot-memcached
     labels:
@@ -190,7 +190,7 @@ kind: DestinationRule
 metadata:
   name: plot-mongodb
 spec:
-  host: plot-mongodb.media-microsvc.svc.cluster.local
+  host: plot-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: plot-mongodb
     labels:
@@ -201,7 +201,7 @@ kind: DestinationRule
 metadata:
   name: plot-service
 spec:
-  host: plot-service.media-microsvc.svc.cluster.local
+  host: plot-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: plot-service
     labels:
@@ -212,7 +212,7 @@ kind: DestinationRule
 metadata:
   name: rating-redis
 spec:
-  host: rating-redis.media-microsvc.svc.cluster.local
+  host: rating-redis.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: rating-redis
     labels:
@@ -223,7 +223,7 @@ kind: DestinationRule
 metadata:
   name: rating-service
 spec:
-  host: rating-service.media-microsvc.svc.cluster.local
+  host: rating-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: rating-service
     labels:
@@ -234,7 +234,7 @@ kind: DestinationRule
 metadata:
   name: review-storage-memcached
 spec:
-  host: review-storage-memcached.media-microsvc.svc.cluster.local
+  host: review-storage-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: review-storage-memcached
     labels:
@@ -245,7 +245,7 @@ kind: DestinationRule
 metadata:
   name: review-storage-mongodb
 spec:
-  host: review-storage-mongodb.media-microsvc.svc.cluster.local
+  host: review-storage-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: review-storage-mongodb
     labels:
@@ -256,7 +256,7 @@ kind: DestinationRule
 metadata:
   name: review-storage-service
 spec:
-  host: review-storage-service.media-microsvc.svc.cluster.local
+  host: review-storage-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: review-storage-service
     labels:
@@ -267,7 +267,7 @@ kind: DestinationRule
 metadata:
   name: text-service
 spec:
-  host: text-service.media-microsvc.svc.cluster.local
+  host: text-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: text-service
     labels:
@@ -278,7 +278,7 @@ kind: DestinationRule
 metadata:
   name: unique-id-service
 spec:
-  host: unique-id-service.media-microsvc.svc.cluster.local
+  host: unique-id-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: unique-id-service
     labels:
@@ -289,7 +289,7 @@ kind: DestinationRule
 metadata:
   name: user-memcached
 spec:
-  host: user-memcached.media-microsvc.svc.cluster.local
+  host: user-memcached.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: user-memcached
     labels:
@@ -300,7 +300,7 @@ kind: DestinationRule
 metadata:
   name: user-mongodb
 spec:
-  host: user-mongodb.media-microsvc.svc.cluster.local
+  host: user-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: user-mongodb
     labels:
@@ -311,7 +311,7 @@ kind: DestinationRule
 metadata:
   name: user-review-mongodb
 spec:
-  host: user-review-mongodb.media-microsvc.svc.cluster.local
+  host: user-review-mongodb.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: user-review-mongodb
     labels:
@@ -322,7 +322,7 @@ kind: DestinationRule
 metadata:
   name: user-review-redis
 spec:
-  host: user-review-redis.media-microsvc.svc.cluster.local
+  host: user-review-redis.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: user-review-redis
     labels:
@@ -333,7 +333,7 @@ kind: DestinationRule
 metadata:
   name: user-review-service
 spec:
-  host: user-review-service.media-microsvc.svc.cluster.local
+  host: user-review-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: user-review-service
     labels:
@@ -344,7 +344,7 @@ kind: DestinationRule
 metadata:
   name: user-service
 spec:
-  host: user-service.media-microsvc.svc.cluster.local
+  host: user-service.ai4cloudops-f7f10d9.svc.cluster.local
   subsets:
   - name: user-service
     labels:

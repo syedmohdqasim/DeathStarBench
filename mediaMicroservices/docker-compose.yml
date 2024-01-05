@@ -9,7 +9,7 @@ services:
       - /etc/resolv.conf:/etc/resolv.conf
 
   unique-id-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: unique-id-service
     cpus: 1
     mem_limit: 1G
@@ -21,7 +21,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   movie-id-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: movie-id-service
     cpus: 1
     mem_limit: 1G
@@ -51,7 +51,7 @@ services:
     restart: always
 
   text-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: text-service
     cpus: 1
     mem_limit: 1G
@@ -63,7 +63,7 @@ services:
       - /local/astraea-spans:/astraea-spans
 
   rating-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: rating-service
     cpus: 1
     mem_limit: 1G
@@ -84,7 +84,7 @@ services:
     restart: always
 
   user-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: user-service
     cpus: 1
     mem_limit: 1G
@@ -114,7 +114,7 @@ services:
     restart: always
 
   compose-review-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: compose-review-service
     cpus: 1
     mem_limit: 1G
@@ -135,7 +135,7 @@ services:
     restart: always
 
   review-storage-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: review-storage-service
     cpus: 1
     mem_limit: 1G
@@ -165,7 +165,7 @@ services:
     restart: always
 
   user-review-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: user-review-service
     cpus: 1
     mem_limit: 1G
@@ -195,7 +195,7 @@ services:
     restart: always
 
   movie-review-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: movie-review-service
     cpus: 1
     mem_limit: 1G
@@ -239,7 +239,7 @@ services:
       - ./gen-lua:/gen-lua
 
   cast-info-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: cast-info-service
     cpus: 1
     mem_limit: 1G
@@ -269,7 +269,7 @@ services:
     restart: always
 
   plot-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: plot-service
     cpus: 1
     mem_limit: 1G
@@ -299,7 +299,7 @@ services:
     restart: always
 
   movie-info-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: movie-info-service
     cpus: 1
     mem_limit: 1G

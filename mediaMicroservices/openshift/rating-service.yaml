@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: rating-service
-        image: mert/media-microservices:latest
+        image: smqasim/media-microservices:latest
         command: ["RatingService"]
       restartPolicy: Always

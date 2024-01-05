@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: compose-review-service
-        image: mert/media-microservices:latest
+        image: smqasim/media-microservices:latest
         command: ["ComposeReviewService"]
       restartPolicy: Always

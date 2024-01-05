@@ -39,6 +39,6 @@ spec:
     spec:
       containers:
       - name: text-service
-        image: mert/media-microservices:latest
+        image: smqasim/media-microservices:latest
         command: ["TextService"]
       restartPolicy: Always

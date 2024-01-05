@@ -55,7 +55,7 @@ services:
   #    entrypoint: RatingService
 
   user-service:
-    image: mert/media-microservices:latest
+    image: smqasim/media-microservices:latest
     hostname: user-service
     ports:
       - 10005:9090
