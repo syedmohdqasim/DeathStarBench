@@ -4,6 +4,7 @@ RUN apt-get -y upgrade
 RUN apt-get -y install dnsutils git vim python3 python3-aiohttp
 RUN apt-get -y install libssl-dev libz-dev luarocks
 RUN apt-get -y install iputils-ping lynx build-essential gcc bash curl luarocks
+RUN snap install -y hey
 RUN useradd -m john
 RUN mkdir /app
 WORKDIR /app
