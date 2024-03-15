@@ -81,7 +81,7 @@ void fetch_span_states() {
     std::cout <<"fetching s3 file";
     CURL* curl;
     CURLcode res;
-    std::string url = "https://stack.nerc.mghpcc.org:13808/swift/v1/AUTH_e71396e5628e446db52e689c27cd425a/syed-astraea/astraea-spans/spans"; // Replace with the URL of the file you want to download.
+    std::string url = "https://stack.nerc.mghpcc.org:13808/v1/AUTH_7d29ffa4b66b410ba9280e81069f2799/syed-astraea/astraea-spans/spans"; // Replace with the URL of the file you want to download.
     std::string local_file_path = "/tmp/astrea-spans"; // Local file path where you want to save the downloaded file.
 
     FILE* file = fopen(local_file_path.c_str(), "wb");
@@ -135,7 +135,7 @@ void fetch_sleep_file() {
     std::cout <<"fetching s3 sleep file";
     CURL* curl;
     CURLcode res;
-    std::string url = "https://stack.nerc.mghpcc.org:13808/swift/v1/AUTH_e71396e5628e446db52e689c27cd425a/syed-astraea/astraea-spans/sleeps"; // Replace with the URL of the file you want to download.
+    std::string url = "https://stack.nerc.mghpcc.org:13808/v1/AUTH_7d29ffa4b66b410ba9280e81069f2799/syed-astraea/astraea-spans/sleeps"; // Replace with the URL of the file you want to download.
     std::string local_file_path = "/tmp/sleeps"; // Local file path where you want to save the downloaded file.
 
     FILE* file = fopen(local_file_path.c_str(), "wb");
