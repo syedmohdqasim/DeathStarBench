@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NS=ai4cloudops-11855c
+NS=ai4cloudops-f7f10d9
 
 echo "Are you really sure you want to erase the ${NS} world? (y/n)"
 read a
@@ -36,14 +36,14 @@ done
 
 wait
 
-echo deleting cm
-for c in jaeger-config-yaml media-frontend-lua media-frontend-nginx nginx-thrift-jaeger nginx-thrift-genlua nginx-thrift-pages nginx-thrift-luascripts nginx-thrift-luascripts-api-home-timeline nginx-thrift-luascripts-api-post nginx-thrift-luascripts-api-user nginx-thrift-luascripts-api-user-timeline nginx-thrift-luascripts-wrk2-api-home-timeline nginx-thrift-luascripts-wrk2-api-post nginx-thrift-luascripts-wrk2-api-user nginx-thrift-luascripts-wrk2-api-user-timeline nginx-thrift nginx-thrift-pages-style nginx-thrift-pages-javascript
+#echo deleting cm
+#for c in jaeger-config-yaml media-frontend-lua media-frontend-nginx nginx-thrift-jaeger nginx-thrift-genlua nginx-thrift-pages nginx-thrift-luascripts nginx-thrift-luascripts-api-home-timeline nginx-thrift-luascripts-api-post nginx-thrift-luascripts-api-user nginx-thrift-luascripts-api-user-timeline nginx-thrift-luascripts-wrk2-api-home-timeline nginx-thrift-luascripts-wrk2-api-post nginx-thrift-luascripts-wrk2-api-user nginx-thrift-luascripts-wrk2-api-user-timeline nginx-thrift nginx-thrift-pages-style nginx-thrift-pages-javascript
+#
+#do
+#	oc delete cm/${c} -n ${NS}
+#done
 
-do
-	oc delete cm/${c} -n ${NS}
-done
-
-echo finally deleting namespace ${NS}
-oc delete namespace/${NS}
+#echo finally deleting namespace ${NS}
+#oc delete namespace/${NS}
 
 echo run deploy-all-services-and-configurations.sh to deploy again.

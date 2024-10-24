@@ -41,7 +41,17 @@ spec:
         volumeMounts:
           - name: my-data
             mountPath: "/data/db"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
+
       restartPolicy: Always
+
       volumes:
       - name: my-data
         emptyDir: {}

@@ -38,6 +38,15 @@ spec:
       containers:
       - name: compose-post-redis
         image: redis
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
       restartPolicy: Always
+
       imagePullSecrets:
         - name: regcred

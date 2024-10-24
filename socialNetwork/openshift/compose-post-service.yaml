@@ -40,6 +40,7 @@ spec:
       containers:
       - name: compose-post-service
         image: smqasim/social-network-microservices:latest
+        imagePullPolicy: Always
         command: ["ComposePostService"]
         volumeMounts:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
@@ -48,6 +49,14 @@ spec:
           - mountPath: /social-network-microservices/config/service-config.json
             subPath: service-config.json
             name: service-config-json
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
       imagePullSecrets:
         - name: regcred
       restartPolicy: Always

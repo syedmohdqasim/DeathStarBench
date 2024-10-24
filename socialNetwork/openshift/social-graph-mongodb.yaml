@@ -38,6 +38,14 @@ spec:
       containers:
       - name: social-graph-mongodb
         image: mongo
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
         volumeMounts:
           - name: my-data
             mountPath: "/data/db"

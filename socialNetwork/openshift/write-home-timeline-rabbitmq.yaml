@@ -45,6 +45,14 @@ spec:
       containers:
       - name: write-home-timeline-rabbitmq
         image: rabbitmq
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
         env:
         - name: RABBITMQ_ERLANG_COOKIE
           value: "WRITE-HOME-TIMELINE-RABBITMQ"

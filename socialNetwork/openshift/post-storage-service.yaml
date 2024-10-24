@@ -38,6 +38,13 @@ spec:
       containers:
       - name: post-storage-service
         image: smqasim/social-network-microservices
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
         command: ["PostStorageService"]
         ports:
         - containerPort: 9090

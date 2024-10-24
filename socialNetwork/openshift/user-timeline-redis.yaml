@@ -38,6 +38,14 @@ spec:
       containers:
       - name: user-timeline-redis
         image: redis
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
         volumeMounts:
         - name: ephemeral-storage
           mountPath: /data

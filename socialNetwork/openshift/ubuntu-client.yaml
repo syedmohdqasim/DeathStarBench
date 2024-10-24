@@ -23,6 +23,14 @@ spec:
       containers:
       - name: ubuntu-client
         image: smqasim/ubuntu-client:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 2000m
+            memory: 500Mi
+
         command: ["/bin/sleep", "3650d"]
         imagePullPolicy: Always
 #          - apt-get -y update &&
