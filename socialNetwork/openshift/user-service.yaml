@@ -40,7 +40,7 @@ spec:
         image: yg397/social-network-microservices
         resources:
           requests:
-            cpu: 100m
+            cpu: 10m
             memory: 100Mi
           limits:
             cpu: 2000m

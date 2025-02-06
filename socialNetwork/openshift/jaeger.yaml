@@ -84,7 +84,7 @@ spec:
         resources:
           requests:
             memory: "1Gi"   # Request 4 gibibytes of memory
-            cpu: "1"      # Request 2 CPU cores
+            cpu: "10m"      # Request 2 CPU cores
           limits:
             memory: "32Gi"   # Limit to 16 gibibytes of memory
             cpu: "8"        # Limit to 8 CPU core

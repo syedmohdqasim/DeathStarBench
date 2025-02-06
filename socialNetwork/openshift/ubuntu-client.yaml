@@ -20,12 +20,14 @@ spec:
         app: ubuntu-client
       name: ubuntu-client
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
       - name: ubuntu-client
         image: smqasim/ubuntu-client:latest
         resources:
           requests:
-            cpu: 100m
+            cpu: 10m
             memory: 100Mi
           limits:
             cpu: 2000m
