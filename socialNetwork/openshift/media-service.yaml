@@ -37,14 +37,14 @@ spec:
     spec:
       containers:
       - name: media-service
-        image: smqasim/social-network-microservices
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/social-network-microservices
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 1
+            memory: 1000Mi
           limits:
             cpu: 2000m
-            memory: 500Mi
+            memory: 5000Mi
 
         command: ["MediaService"]
         volumeMounts:
@@ -56,7 +56,7 @@ spec:
             name: service-config-json
       restartPolicy: Always
       imagePullSecrets:
-        - name: regcred
+        - name: customregred
       volumes:
         - name: jaeger-conf-yaml
           configMap:

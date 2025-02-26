@@ -44,14 +44,14 @@ spec:
     spec:
       containers:
       - name: write-home-timeline-rabbitmq
-        image: rabbitmq
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/rabbitmq
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 1
+            memory: 1000Mi
           limits:
             cpu: 2000m
-            memory: 500Mi
+            memory: 5000Mi
 
         env:
         - name: RABBITMQ_ERLANG_COOKIE
@@ -60,4 +60,4 @@ spec:
           value: "/"
       restartPolicy: Always
       imagePullSecrets:
-        - name: regcred
+        - name: customregred

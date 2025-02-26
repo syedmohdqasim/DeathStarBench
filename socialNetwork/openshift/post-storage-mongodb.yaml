@@ -37,17 +37,17 @@ spec:
     spec:
       containers:
       - name: post-storage-mongodb
-        image: mongo
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/mongo
         volumeMounts:
           - name: my-data
             mountPath: "/data/db"
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 1
+            memory: 1000Mi
           limits:
             cpu: 2000m
-            memory: 500Mi
+            memory: 5000Mi
 
 
       restartPolicy: Always
@@ -56,4 +56,4 @@ spec:
       - name: my-data
         emptyDir: {}
       imagePullSecrets:
-        - name: regcred
+        - name: customregred

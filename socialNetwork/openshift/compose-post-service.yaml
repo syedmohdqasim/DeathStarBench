@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: compose-post-service
-        image: smqasim/social-network-microservices:latest
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/social-network-microservices:latest
         imagePullPolicy: Always
         command: ["ComposePostService"]
         volumeMounts:
@@ -51,14 +51,14 @@ spec:
             name: service-config-json
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 1
+            memory: 1000Mi
           limits:
             cpu: 2000m
-            memory: 500Mi
+            memory: 5000Mi
 
       imagePullSecrets:
-        - name: regcred
+        - name: customregred
       restartPolicy: Always
       volumes:
         - name: jaeger-conf-yaml

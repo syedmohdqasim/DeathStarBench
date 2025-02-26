@@ -37,15 +37,15 @@ spec:
     spec:
       containers:
       - name: post-storage-memcached
-        image: memcached
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/memcached
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 1
+            memory: 1000Mi
           limits:
             cpu: 2000m
-            memory: 500Mi
+            memory: 5000Mi
 
       restartPolicy: Always
       imagePullSecrets:
-        - name: regcred
+        - name: customregred

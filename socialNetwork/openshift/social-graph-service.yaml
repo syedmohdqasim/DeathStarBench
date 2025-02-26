@@ -37,14 +37,14 @@ spec:
     spec:
       containers:
       - name: social-graph-service
-        image: smqasim/social-network-microservices:latest
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/social-network-microservices
         resources:
           requests:
-            cpu: 10m
-            memory: 100Mi
+            cpu: 1
+            memory: 1000Mi
           limits:
             cpu: 2000m
-            memory: 500Mi
+            memory: 5000Mi
         command: ["SocialGraphService"]
         volumeMounts:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
@@ -62,4 +62,4 @@ spec:
           configMap:
             name: service-config-json
       imagePullSecrets:
-        - name: regcred
+        - name: customregred
