@@ -67,7 +67,7 @@ spec:
     spec:
       containers:
       - name: jaeger-agent
-        image: jaegertracing/all-in-one:1.46
+        image: registry-route-ai4cloudops-11855c.apps.shift.nerc.mghpcc.org/jaegertracing/all-in-one:1.46
         env:
         - name: COLLECTOR_ZIPKIN_HTTP_PORT
           value: "9411"
@@ -83,8 +83,8 @@ spec:
           value: "/tmp/key"
         resources:
           requests:
-            memory: "1Gi"   # Request 4 gibibytes of memory
-            cpu: "1000m"      # Request 2 CPU cores
+            memory: "8Gi"   # Request 4 gibibytes of memory
+            cpu: "2"      # Request 2 CPU cores
           limits:
             memory: "32Gi"   # Limit to 16 gibibytes of memory
             cpu: "8"        # Limit to 8 CPU core
